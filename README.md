@@ -44,7 +44,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
    $ git clone git@github.com:KuKuXia/Gasyori100knock.git
    ```
 
-2. In the Gasyori100knock folder, make a new file named sample.py, copy and paste the following code:
+2. In the Image_Processing_100_Questions folder, make a new file named sample.py, copy and paste the following code:
 
    ```python
    import cv2
@@ -55,7 +55,11 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
    cv2.destroyAllWindows()
    ```
 
-3. Save the file and run it. Successful if the following image is displayed with a new window! Then if you press any button, it disappears.
+3. Save the file and run it. 
+   ```bash
+   python ./sample.py
+   ```
+4. Successful if the following image is displayed with a new window! Then if you press any button, it disappears.
 
 
 ![](assets/sample.png)
