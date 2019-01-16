@@ -60,7 +60,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 
 ![](assets/sample.png)
 
- 4. Next, see the Tutorial folder to learn `numpy `related to image processing. (Please skip this if you already know.)
+ 4. Next, see the [Tutorial folder](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Tutorial) to learn `numpy `related to image processing. (Please skip this if you already know.)
 
  5. From now on, please solve the Question. The Question contents are included in each folder. Please use 	`assets/imori.jpg` in the question. Questions are written in the README.md of each folder.
 
@@ -90,7 +90,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 
 **Unresolved** issues are unanswered
 
-## [Question 1-10](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_01_10)
+## [Question 1-10](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_01_10)
 
 | Number |       Question       | Number |          Question          |
 | :----: | :------------------: | :----: | :------------------------: |
@@ -100,7 +100,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 |   4    | Binarization of Otsu |   9    |      Gaussian filter       |
 |   5    |    HSV conversion    |   10   |       Median filter        |
 
-## [Question 11 - 20](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_11_20)
+## [Question 11 - 20](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_11_20)
 
 | Number |      Question       | Number |     Question      |
 | :----: | :-----------------: | :----: | :---------------: |
@@ -110,7 +110,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 |   14   | Differential filter |   19   |    LoG filter     |
 |   15   |    Sobel filter     |   20   | Histogram display |
 
-## [Question 21 - 30](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_21_30)
+## [Question 21 - 30](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_21_30)
 
 | Number |            Question            | Number |              Question               |
 | :----: | :----------------------------: | :----: | :---------------------------------: |
@@ -120,7 +120,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 |   34   |        Gamma correction        |   29   |   Affine transformation (scaling)   |
 |   25   | Nearest neighbor interpolation |   30   |  Affine transformation (rotation)   |
 
-## [Question 31 - 40](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_31_40)
+## [Question 31 - 40](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_31_40)
 
 |     Number     |              Question              | Number |                          Question                          |
 | :------------: | :--------------------------------: | :----: | :--------------------------------------------------------: |
@@ -130,7 +130,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 | 34 **not yet** | Fourier transform high pass filter |   39   | JPEG compression (Step 3) YCbCr color specification system |
 | 35 **not yet** | Fourier transform band pass filter |   40   |    JPEG compression (Step 4) YCbCr + DCT + quantization    |
 
-## [Question 41 - 50](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_41_50)
+## [Question 41 - 50](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_41_50)
 
 | number |                           Question                           | number |                           Question                           |
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
@@ -140,7 +140,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 |   44   |  Hough transform · Line detection (Step 1) Hough transform   |   49   |                       Opening process                        |
 |   45   |        Hough conversion · Line detection (Step 2) NMS        |   50   |                      Closing processing                      |
 
-## [Question 51 - 60](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_51_60)
+## [Question 51 - 60](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_51_60)
 
 |       Question        | Number | Number |        Question         |
 | :-------------------: | :----: | :----: | :---------------------: |
@@ -150,7 +150,7 @@ Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/y
 | Template matching SSD |   54   |   59   | Labeling 8 neighborhood |
 | Template matching SAD |   55   |   60   |       Alpha Blend       |
 
-## [Question 61 - 70](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_61_70)
+## [Question 61 - 70](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_61_70)
 
 |     number     |         Question          | number | Question |
 | :------------: | :-----------------------: | :----: | :------: |

@@ -1,55 +1,51 @@
 # Tutorial
 
-ここでは画像処理におけるnumpyの基本的な使い方をいくつか紹介していきます。
+Here, we will introduce some basic usage of numpy in image processing.
 
-**numpy**とはpyhtonで用意されたパッケージ(Cでいうライブラリのようなもの)の一種で、行列演算などを得意としています。
+**Numpy** is a type of package prepared by python (something like a library in C). 
 
-また、画像処理では**OpenCV**というライブラリがあり、様々な処理をAPIかしています。
+In addition, there is a library called **OpenCV** in image processing, and it has various APIs.
 
-この問題では、numpyをいじって、OpenCVの処理を自分の手で実現することを目標としています。
+In this tutorial, I am aiming to implement OpenCV processing with my own hands by tinkering with numpy.
 
-pythonでのOpenCVはnumpyをベースとしているため、numpyがいじれる=OpenCVもいじれる　ということになっていきます。
+Please do it in interpreter form instead of .py file from here.
 
+## Start Python
 
-ここからはpyファイルでなく、インタプリタ形式でやってみて下さい。
+1. Be sure to activate your virtual environment using the following command:
 
+   ```bash
+   source activate Image_Processing_100
+   ```
 
-## Python起動
-
-コマンドプロンプト上で「python」と打って下さい。
-すると、こんな感じで >>> と出るはずです。
+2. Then type "python". 
 
 ```bash
-(gasyori100) :~/work_space/Gasyori100knock/Tutorial :$ python
 Python 3.6.7 |Anaconda, Inc.| (default, Oct 23 2018, 14:01:38) 
 [GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
-## インポート
+## import
 
-ここから、パッケージをインストールしていきます。
-OpenCVはcv2、numpyはnumpyをそれぞれインポートします。
-（numpyはよくnpという名前にエイリアスします。）
+We will install the package from here. We import cv2 for OpenCV and numpy for numpy respectively. (Numpy often aliases to the name np)
 
 ```bash
 >>> import cv2
 >>> import numpy as np
 ```
 
-## 画像読み込み、表示
+## Image reading and display
 
-画像を読み込むのはimread()です。
-*imori.jpg*を読み込むには、こうします。
+It is `cv2.imread ()` to read the image. To read *imori.jpg*:
 
 ```bash
->>> img = cv2.imread("imori.jpg")
+>>> img = cv2.imread("./assets/imori.jpg")
 ```
 
-これで変数imgに画像情報がnumpy形式で保存されます。
+The image information is saved in the variable img in numpy format.
 
-画像のサイズ情報をとるにはimg.shapeを使います。
-これは(高さ、横、チャネル)の順になっていて、つまり 縦128ピクセル、横128ピクセル、3チャネル(青、緑、赤)を意味します。
+Use `img.shape` to get image size information. This is in order of (height, width, channel), meaning 128 pixels wide, 128 pixels wide, 3 channels (blue, green, red).
 
 ```bash
 >>> img.shape
@@ -57,10 +53,7 @@ OpenCVはcv2、numpyはnumpyをそれぞれインポートします。
 >>>
 ```
 
-型をとるには、img.dtypeを使用します。
-uint8とは符号なしintで8ビットを意味します。画像はRGB成分がそれぞれ通常0から255の256段階で表現されます。
-例えば、赤のピクセルは(R,G,B) = (255, 0, 0)、白は(R,G,B) = (255, 255, 255)です。
-画像にする時は必ずこの型にしないと画像がおかしくなってしまいます。（あとで説明します。）
+To take a type, use `img.dtype`.  `uint8 `is an unsigned int and means 8 bits. The image is expressed in 256 steps, usually 0 to 255, each of RGB components. For example, the red pixel is (R, G, B) = (255, 0, 0), white is (R, G, B) = (255, 255, 255). When I make it to an image, the image will be wrong unless I make it to this type without fail. (I will explain it later.)
 
 ```bash
 >>> img.dtype
@@ -68,10 +61,9 @@ dtype('uint8')
 >>>
 ```
 
-画像の表示はcv2.imshow()を使います。
-cv2.imshow()の第一引数にはウィンドウの名前（特に気にしなくて良い）、第二引数には画像が必要です。
+To display images, use cv2.imshow (). The first argument to cv2.imshow () requires the name of the window (you do not have to worry about it) and the second argument requires an image.
 
-cv2.waitKey(0)はキーボードから何かが入力されるまで画像を表示する、という働きがあります。（もっと気になる人は自分で調べて）
+`**cv2.waitKey (0) `has the function of displaying an image until something is input from the keyboard. (Look for people you care more about yourself)**
 
 ```bash
 >>> cv2.imshow('', img); cv2.waitKey(0)
@@ -79,45 +71,40 @@ cv2.waitKey(0)はキーボードから何かが入力されるまで画像を表
 >>> 
 ```
 
-|表示 (sample1.png)|
+|Display(sample1.png)|
 |:---:|
 |![](sample1.png)|
 
-
-例えば、imgの型をfloat32にしてみます。
-これはastype()を使えばできます。
+For example, change the img type to float32. This can be done with img.astype ().
 
 ```bash
 >>> _img = img.astype(np.float32)
 ```
 
-これを表示すると、こうなります。
-つまり型がおかしくなるために表示がおかしくなります。（ただし保存はできます。）
-なので、画像をいじる時は、
-1. cv2.imreadで読み込む
-2. 型を**一度np.float32など小数点型に変換する**
-3. 画像をいじる
-4. **画素が0未満のものは0, 255を超えたものは255に直す。**（超重要）
-5. 型を**np.uint8に変換して表示・保存する**
-この手順にすることをおすすめします。
+When this is displayed, it becomes like this. That is, the display will be incorrect as the mold becomes strange. (However, you can save it.) So, when fiddling with images,
 
-4に関しては次章の「画素をいじる」で紹介します。
+1. Read with `cv2.imread()`.
+2. The mold **is converted once to point type, such as `np.float32`**.
+3. Fiddling with images.
+4. **If the pixel is less than 0, it is 0, and if it exceeds 255 it is fixed to 255.** (Super important)
+5. It is recommended that you **convert the** type to **`np.uint8`, display and save it** This procedure is recommended.
+
+We will introduce about 4 in the next chapter "Fiddling with pixels".
 
 ```bash
 >>> cv2.imshow('', _img); cv2.waitKey(0)
 102
 >>>
 ```
-|表示 (sample2.png)|
+|Display(sample2.png)|
 |:---:|
 |![](sample2.png)|
 
-## 画素をいじる。
+## Fiddling with pixels.
 
-画像の操作法はnumpyとほとんど同じです。
+Image manipulation is almost the same as numpy.
 
-例えば、x=30、y=20の画素値をいじりたい時は、こうします。
-画素値はBGRの順に並んでいます。array()とはnumpy形式になっていることを意味します。つまり、OpenCVはnumpyのラッパーです。
+For example, if you want to tinker with pixel values of x = 30, y = 20, do this. Pixel values are arranged in order of BGR. array () means it is in numpy format. That is, OpenCV is a wrapper around numpy.
 
 ```bash
 >>> img[20, 30]
@@ -125,7 +112,7 @@ array([232, 178, 171], dtype=uint8)
 >>> 
 ```
 
-さらに、x=30、y=20、のG成分をとる時はこうします。
+Furthermore, when taking the G component of x = 30, y = 20, do this.
 
 ```bash
 >>> img[20, 30, 1]
@@ -133,14 +120,11 @@ array([232, 178, 171], dtype=uint8)
 >>> 
 ```
 
-ここから、numpyの本題に入っていきます。
+From here, I will enter the main subject of numpy.
 
-numpyには**スライス**という機能があります。
-これはある値v1からある値v2までの全ての要素にアクセスできることを意味します。
+numpy has a function called **slice** . This means that you can access all elements from a value v1 to a certain value v2.
 
-例えば、y=20, x=[30, 32]までを見る時はこうします。
-30:33とすれば行列のまま取り出せます。a:bとすることで、a<= v < bの値にアクセスできます。
-ちなみに :30とすれば [0, 30]、30:とすれば[30, 最後]までを取り出せます。
+For example, to see y = 20, x = [30, 32], do this. If it is 30:33 it can be taken out as a matrix. By setting a: b, you can access the value of a <= v <b. By the way, if you set it to 30, you can get [0, 30], 30: and you can extract up to [30, last].
 
 ```bash
 >>> img[20, 30:33]
@@ -150,8 +134,7 @@ array([[232, 178, 171],
 >>> 
 ```
 
-例えば画像の左上(x=[0, 50], y = [0, 50])を黒にするには、こんな感じでできます。
-copy()については次で説明します。
+For example, to make the upper left of the image (x = [0, 50], y = [0, 50]) black can be done like this. copy () is described below.
 
 ```bash
 >>> img2 = img.copy()
@@ -161,20 +144,15 @@ copy()については次で説明します。
 >>>
 ```
 
-|表示 (sample3.png)|
+|Display(sample3.png)|
 |:---:|
 |![](sample3.png)|
 
+Next, **If the pixel is less than 0, it is 0, and if it exceeds 255 it is fixed to 255.**  I will explain.
 
-次に先程の　4. **画素が0未満のものは0, 255を超えたものは255に直す。**　に関して説明します。
+For example, let's change the B component of a part to a value of 260 by making the image a float 32 type once.  `uint8 `type can only take the range of [0, 255], so if you convert this to `uint8 `type, it will be like this. A part of the newt's face has become yellow.
 
-例えば、画像を一度 float32型にして、一部分のB成分を260という値に変えてみます。
-uint8型は[0, 255] の範囲しか取り得ないので、これをuint8型に直すとこんな風になります。
-イモリの顔の一部分が黄色くなってしまっています。
-
-**これは、260をuint8型に直すと260 - 256 が起きて、B=4となってしまうためです。**
-これが原因で画素値がおかしくなることが多々起きてしまいます。
-なので、4の操作が必要となります。
+**This is because when 260 is converted to `uint8 `type, 260 - 256 occurs and B = 4.** This often causes pixel values to be incorrect. So, operation of 4 is necessary.
 
 ```bash
 >>> img2 = img.copy().astype(np.float32)
@@ -182,28 +160,27 @@ uint8型は[0, 255] の範囲しか取り得ないので、これをuint8型に�
 >>> cv2.imshow("imori", img2.astype(np.uint8)); cv2.waitKey(0)
 ```
 
-|表示 (sample5.png)|
+|Display (sample5.png)|
 |:---:|
 |![](sample5.png)|
 
-## 画像のコピー
+## Copy image
 
-画像を別変数にコピーしたい時はcopy()を使いましょう。
+Let's use copy () when you want to copy the image to another variable.
 
 ```bash
 >>> img2 = img.copy()
 ```
 
-単純に img2 = img とすると、画像のアドレスが保存されるのでimg2をいじるとimgにも反映されてしまします。
+Simply setting img2 = img will save the address of the image, so if you change img2, it will be reflected in img too.
 
-特別な利用がない場合は、**copy()で画像をコピーしましょう**。
+If there is no special use, **let's copy the image with copy ()** .
 
-## 画像の保存
+## Save image
 
-保存には cv2.imwrite()を使いましょう。
+Let's use cv2.imwrite () for saving.
 
-例えば先程のimg2を *sample.jpg* という名前で保存する時はこうしましょう。
-Trueとなれば保存に成功で、これで同じフォルダ内にsample.jpgというファイルができています。
+Let's do this, for example, when saving the previous img2 as *`sample.jpg`* . If it is true, it is successfully saved, so that a file called `sample.jpg` is created in the same folder.
 
 ```bash
 >>> cv2.imwrite("sample.jpg", img2)
@@ -211,26 +188,27 @@ True
 >>>
 ```
 
-## 練習
+## Practice
 
-画像の左半分上のRとBを入れ替えて表示してみましょう。
+Let's replace R and B on the left half of the image and display it.
 
-答え
- 
+Answer
+
 ```bash
 >>> import cv2
 >>> img = cv2.imread("imori.jpg")
+>>> img3 = img.copy()
 >>> H, W, C = img.shape
->>> img[:H//2, :W//2] = img[:H//2, :W//2, (2, 1, 0)]
+>>> img3[:H//2, :W//2] = img3[:H//2, :W//2, (2, 1, 0)]
 >>> cv2.imshow('', img3); cv2.waitKey(0)
 102
 >>> 
 ```
 
-|表示 (sample4.png)|
+|Display (sample4.png)|
 |:---:|
 |![](sample4.png)|
 
-以上でチュートリアルは終了です。
+That concludes the tutorial.
 
-あとはばんばん問題を解いて下さい！！！！
+Please solve the problem as well! ! ! !
