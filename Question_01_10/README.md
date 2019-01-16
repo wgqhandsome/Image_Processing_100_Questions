@@ -1,12 +1,10 @@
 # Q. 1 - 10
 
-## Q.1. チャネル入れ替え
+## Q.1. Channel Swapping
 
-画像を読み込み、RGBをBGRの順に入れ替えよ。
+### Detail: Read the image and change RGB in order of BGR.
 
-画像の赤成分を取り出すには、以下のコードで可能。
-cv2.imread()関数ではチャネルがBGRの順になることに注意！
-これで変数redにimori.jpgの赤成分のみが入る。
+It is possible to extract the red component of the image with the following code. **Note that in the cv2.imread () function the channel will be in order of BGR!** The variable red contains only the red component of `imori.jpg`.
 
 ```python
 import cv2
@@ -14,136 +12,133 @@ img = cv2.imread("imori.jpg")
 red = img[:, :, 2].copy()
 ```
 
-|入力 (imori.jpg)|出力 (answer_1.jpg)|
+|Input (imori.jpg)|Output (answer_1.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_1.jpg)|
 
-答え >> answer_1.py
+answer >> answer_1.py
 
-## Q.2. グレースケール化
+## Q.2. Grayscale
 
-画像をグレースケールにせよ。
-グレースケールとは、画像の輝度表現方法の一種であり下式で計算される。
+### Detail: Make the image grayscale. 
 
+Grayscale is a kind of image luminance expression method and is calculated by the following formula.
+$$
 Y = 0.2126 R + 0.7152 G + 0.0722 B
+$$
 
-|入力 (imori.jpg)|出力 (answer_2.jpg)|
+
+|Input (imori.jpg)|Output (answer_2.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_2.jpg)|
 
-答え >> answer_2.py
+Answer >> answer_2.py
 
-## Q.3. 二値化
+## Q.3. Binarization 
 
-画像を二値化せよ。
-二値化とは、画像を黒と白の二値で表現する方法である。
-ここでは、グレースケールにおいて閾値を128に設定し、下式で二値化する。
+Binarize the image. Binarization is a method of expressing images as binary black and white. Here, the threshold is set to 128 in gray scale and binarized by the following equation.
 
-```bash
-y = { 0 (if y < 128)
-     255 (else) 
+```python
+y = 0 if y < 128 else 255
 ```
 
-|入力 (imori.jpg)|出力 (answer_3.jpg)|
+|Input (imori.jpg)|Output (answer_3.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_3.jpg)|
 
-答え >> answer_3.py
+Answer >> answer_3.py
 
-## Q.4. 大津の二値化
+## Q.4. Binarization of Otsu
 
-大津の二値化を実装せよ。
-大津の二値化とは判別分析法と呼ばれ、二値化における分離の閾値を自動決定する手法である。
-これは**クラス内分散**と**クラス間分散**の比から計算される。
+### Detail：Implement Otsu's binarization. 
 
+Otsu's binarization is called a discriminant analysis method, and it is a method to automatically determine the separation threshold in binarization. This is calculated from the ratio **between** **intra-class variance** and **interclass variance** .
 
-- 閾値t未満をクラス0, t以上をクラス1とする。
-- w0, w1 ... 閾値tにより分離された各クラスの画素数の割合 (w0 + w1 = 1を満たす)
-- S0^2, S1^2 ... 各クラスの画素値の分散
-- M0, M1 ... 各クラスの画素値の平均値
+- Less than the threshold t is class 0, and equal or more than t is class 1.
+- $w_0$, $w_1$: The ratio of the number of pixels of each class separated by the threshold t ($w_0 + w_1 = 1$ is satisfied)
+- $S0^2, S1^2$ ... Distribution of pixel values of each class
+- $M0, M1$ ... average value of pixel values of each class
 
-とすると、
-
-```bash
-クラス内分散 Sw^2 = w0 * S0^2 + w1 * S1^2
-クラス間分散 Sb^2 = w0 * (M0 - Mt)^2 + w1 * (M1 - Mt)^2 = w0 * w1 * (M0 - M1) ^2
-画像全体の画素の分散 St^2 = Sw^2 + Sb^2 = (const)
-以上より、分離度は次式で定義される。
-分離度 X = Sb^2 / Sw^2 = Sb^2 / (St^2 - Sb^2)
+```python
+Sw^2 = w0 * S0^2 + w1 * S1^2 # Within-class variance
+Sb^2 = w0 * (M0 - Mt)^2 + w1 * (M1 - Mt)^2 = w0 * w1 * (M0 - M1) ^2 # Interclass variance
+St^2 = Sw^2 + Sb^2 = (const)  # Distribution of pixels of the whole image
+# The degree of separation is defined by the following equation. 
+X = Sb^2 / Sw^2 = Sb^2 / (St^2 - Sb^2) # Separation degree 
 ```
 
-となるので、
+Therefore:
 
-```bash
+```python
 argmax_{t} X = argmax_{t} Sb^2
 ```
-となる。すなわち、Sb^2 =  w0 * w1 * (M0 - M1) ^2 となる、閾値tを二値化の閾値とすれば良い。
+ That is, the threshold value t that satisfies $Sb^2 =  w0 * w1 * (M0 - M1) ^2 $ may be used as the binarization threshold.
 
-|入力 (imori.jpg)|出力 (th = 127) (answer_4.jpg)|
+|Input (imori.jpg)|Output (th = 127) (answer_4.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_4.jpg)|
 
-答え >> answer_4.py
+Answer >> answer_4.py
 
 
-## Q.5. HSV変換
+## Q.5. HSV Conversion
 
-HSV変換を実装して、色相Hを反転せよ。
+### Detail: Implement HSV conversion and flip Hue H.
 
-HSV変換とは、**Hue(色相)**、**Saturation(彩度)**、**Value(明度)** で色を表現する手法である。
+HSV conversion is a method of expressing colors by Hue(色相)**、**Saturation(彩度)**、**Value(明度)** .
 
-- Hue ... 色合いを0~360度で表現し、赤や青など色の種類を示す。 ( 0 <= H < 360)
-- Saturation ... 色の鮮やかさ。Saturationが低いと灰色さが顕著になり、くすんだ色となる。 ( 0<= S < 1)
-- Value ... 色の明るさ。Valueが高いほど白に近く、Valueが低いほど黒に近くなる。 ( 0 <= V < 1)
+- Hue: 
+  - Expresses the color tone from 0 to 360 degrees.
+  - Indicates the kind of color such as red or blue. (0 <= H <360)
+- Saturation: Color vividness. 
+  - When the Saturation is low, the grayness becomes conspicuous and it becomes a dull color. (0 <= S <1)
+- Value: Brightness of color. 
+  - The higher the Value, the closer to white
+  - The lower the Value, the closer to black. (0 <= V <1)
 
-RGB -> HSV変換は以下の式で定義される。
-
-R,G,Bが[0, 1]の範囲にあるとする。
+The RGB -> HSV conversion is defined by the following equation.
 
 ```bash
 Max = max(R,G,B)
 Min = min(R,G,B)
-
 H =  { 0                            (if Min=Max)
-       60 x (G-R) / (Max-Min) + 60  (if Min=B)
-       60 x (B-G) / (Max-Min) + 180 (if Min=R)
-       60 x (R-B) / (Max-Min) + 300 (if Min=G)
-       
+       60 * (G-R) / (Max-Min) + 60  (if Min=B)
+       60 * (B-G) / (Max-Min) + 180 (if Min=R)
+       60 * (R-B) / (Max-Min) + 300 (if Min=G)
 V = Max
-
 S = Max - Min
 ```
 
-HSV -> RGB変換は以下の式で定義される。
+HSV -> RGB conversion is defined by the following equation.
 
 ```bash
 C = S
 
-H' = H // 60
+H_1 = H // 60
 
-X = C (1 - |H' mod 2 - 1|)
+X = C * (1 - abs(H_1 % 2 - 1)
 
-(R,G,B) = (V - C) (1,1,1) + { (0, 0, 0)  (if H is undefined)
-                              (C, X, 0)  (if 0 <= H' < 1)
-                              (X, C, 0)  (if 1 <= H' < 2)
-                              (0, C, X)  (if 2 <= H' < 3)
-                              (0, X, C)  (if 3 <= H' < 4)
-                              (X, 0, C)  (if 4 <= H' < 5)
-                              (C, 0, X)  (if 5 <= H' < 6)
+(R,G,B) = (V - C) * (1,1,1) + { (0, 0, 0)  (if H is undefined)
+                              (C, X, 0)  (if 0 <= H_1 < 1)
+                              (X, C, 0)  (if 1 <= H_1 < 2)
+                              (0, C, X)  (if 2 <= H_1 < 3)
+                              (0, X, C)  (if 3 <= H_1 < 4)
+                              (X, 0, C)  (if 4 <= H_1 < 5)
+                              (C, 0, X)  (if 5 <= H_1 < 6)}
 ```
-ここでは色相Hを反転(180を加算)し、RGBに直し画像を表示せよ。
+In this case, invert the hue H (add 180) and display it as RGB and display the image.
 
-|入力 (imori.jpg)|出力 (answer_5.jpg)|
+|Input (imori.jpg)|Output (answer_5.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_5.jpg)|
 
-答え >> answer_5.py
+Answer >> answer_5.py
 
-## Q.6. 減色処理
+## Q.6. Reducing color
 
-ここでは画像の値を256^3から4^3、すなわちR,G,B in {32, 96, 160, 224}の各4値に減色せよ。
-これは量子化操作である。
-各値に関して、以下の様に定義する。
+### Detail:
+
+Decrease the value of the image from 256 ^ 3 to 4 ^ 3. That is, to each of the four values R, G, B in {32, 96, 160, 224}. This is a quantization operation. For each value, it is defined as follows.
 
 ```bash
 val = {  32  (0 <= val < 63)
@@ -151,80 +146,75 @@ val = {  32  (0 <= val < 63)
         160  (127 <= val < 191)
         224  (191 <= val < 256)
 ```
-|入力 (imori.jpg)|出力 (answer_6.jpg)|
+|Input (imori.jpg)|Output (answer_6.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_6.jpg)|
 
-答え >> answer_6.py
+Answer >> answer_6.py
 
-## Q.7. 平均プーリング
+## Q.7. Average pooling
 
-ここでは画像をグリッド分割(ある固定長の領域に分ける)し、かく領域内(セル)の平均値でその領域内の値を埋める。
-このようにグリッド分割し、その領域内の代表値を求める操作は**Pooling(プーリング)** と呼ばれる。
-これらプーリング操作は**CNN(Convolutional Neural Network)** において重要な役割を持つ。
+In this case, the image is divided into grids (divide it into certain fixed-length regions), and the value in the region is filled with the average value in the region (cell). The operation of dividing the grid in this way and **obtaining** the representative value in that area is called **pooling** . These pooling operations play an important role in **CNN (Convolutional Neural Network)** .
 
-これは次式で定義される。
+This is defined by the following equation.
 
 ```bash
 v = 1/|R| * Sum_{i in R} v_i
 ```
 
-ここではimori.jpgは128x128なので、8x8にグリッド分割し、平均プーリングせよ。
+Here imori.jpg is 128x128, so divide the grid into 8x8 and average pool.
 
-|入力 (imori.jpg)|出力 (answer_7.jpg)|
+|Input (imori.jpg)|Output (answer_7.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_7.jpg)|
 
-答え >> answer_7.py
-## Q.8. Maxプーリング
+Answer >> answer_7.py
+## Q.8. Max pooling
 
-ここでは平均値でなく最大値でプーリングせよ。
+Pool here with the maximum value instead of the average value.
 
-|入力 (imori.jpg)|出力 (answer_8.jpg)|
+|Input (imori.jpg)|Output (answer_8.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_8.jpg)|
 
-答え >> answer_8.py
+Answer >> answer_8.py
 
-## Q.9. ガウシアンフィルタ
+## Q.9. Gaussian filter
 
-ガウシアンフィルタ(3x3、標準偏差1.3)を実装し、*imori_noise.jpg*のノイズを除去せよ。
+Implement the Gaussian filter (3 × 3, standard deviation 1.3) and remove the noise of *imori_noise.jpg* .
 
-ガウシアンフィルタとは画像の**平滑化**（滑らかにする）を行うフィルタの一種であり、**ノイズ除去**にも使われる。
+The Gaussian filter is a type of filter that performs **smoothing** ( **smoothing** ) of an image, and it is also used for **noise removal**.
 
-ノイズ除去には他にも、メディアンフィルタ(Q.10)、平滑化フィルタ(Q.11)、LoGフィルタ(Q.19)などがある。
+Other than this, there are median filter (Q.10), smoothing filter (Q.11), LoG filter (Q.19), and others for removing noise.
 
-ガウシアンフィルタは注目画素の周辺画素を、ガウス分布による重み付けで平滑化し、次式で定義される。
-このような重みは**カーネル**や**フィルタ**と呼ばれる。
+The Gaussian filter smoothes surrounding pixels of the pixel of interest by weighting by Gaussian distribution and is defined by the following equation. Such weights are called **kernels** and **filters** .
 
-ただし、画像の端はこのままではフィルタリングできないため、画素が足りない部分は0で埋める。これを**0パディング**と呼ぶ。
-かつ、重みは正規化する。(sum g = 1)
+However, as it is impossible to filter the edges of the image as it is, pixels where the pixels are missing are filled with zeros. This is called **0 padding** . And weights are normalized. (sum g = 1)
 
 ```bash
-重み g(x,y,s) = 1/ (s*sqrt(2 * pi)) * exp( - (x^2 + y^2) / (2*s^2))
-標準偏差s = 1.3による8近傍ガウシアンフィルタは
+Weight g(x,y,s) = 1/ (s*sqrt(2 * pi)) * exp( - (x^2 + y^2) / (2*s^2))
+by the standard deviation s = 1.3 8 neighborhood Gaussian filter is 
             1 2 1
 K =  1/16 [ 2 4 2 ]
             1 2 1
 ```
 
-|入力 (imori_noise.jpg)|出力 (answer_9.jpg)|
+|Input (imori_noise.jpg)|Output (answer_9.jpg)|
 |:---:|:---:|
 |![](imori_noise.jpg)|![](answer_9.jpg)|
 
-答え >> answer_9.py
+Answer >> answer_9.py
 
-## Q.10 メディアンフィルタ
+## Q.10Median filter
 
-メディアンフィルタ(3x3)を実装し、*imori_noise.jpg*のノイズを除去せよ。
+Implement the median filter (3x3) and remove the noise of *imori_noise.jpg* .
 
-メディアンフィルタとは画像の平滑化を行うフィルタの一種である。
+The median filter is a type of filter that performs smoothing of an image.
 
-これは注目画素の3x3の領域内の、メディアン値(中央値)を出力するフィルタである。
-これもゼロパディングせよ。
+This is a filter that outputs a median value (median value) within the 3 × 3 region of the target pixel. Zero pad this too.
 
-|入力 (imori_noise.jpg)|出力 (answer_10.jpg)|
+|Input (imori_noise.jpg)|Output (answer_10.jpg)|
 |:---:|:---:|
 |![](imori_noise.jpg)|![](answer_10.jpg)|
 
-答え >> answer_10.py
+Answer >> answer_10.py

@@ -2,8 +2,9 @@ import cv2
 import numpy as np
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float32) / 255.
-
+img = cv2.imread("imori.jpg")
+img_origin = img.copy()
+img = img.astype(np.float32) / 255.
 # RGB > HSV
 out = np.zeros_like(img)
 
@@ -46,7 +47,7 @@ for i in range(6):
     out[..., 2][ind] = (V-C)[ind] + vals[i][2][ind]
 
 out[np.where(max_v == min_v)] = 0
-out = (out * 255).astype(np.uint8) 
+out = (out * 255).astype(np.uint8)
 
 # Save result
 cv2.imwrite("out.jpg", out)

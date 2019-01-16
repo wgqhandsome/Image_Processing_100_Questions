@@ -1,188 +1,163 @@
-# 画像処理100本ノック!!
+# Image Processing 100 Questions
 
-画像処理の初学者のための問題１００問。
+---
 
-これは画像処理の基本的処理の知識を身に着け、アルゴリズムを理解するための100本ノックです。
+This is the English version of image processing 100 questions.  The [original Japanese repository](https://github.com/yoyoyo-yo/Gasyori100knock) was created by [yoyoyo-yo](https://github.com/yoyoyo-yo).  It’s updated by him now.  To be honest, I can not speak Japanese. Since the code is language independent and I’m preparing for my interview question about computer vision now. I decided to translate the English version of this 100 questions.
 
-ここに載っている問題はOpenCVでAPIが用意されているものが殆どですが、**あえてそれを自分の手で実装**してください。
+Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/yoyoyo-yo) for his great effort.  
 
+## Before Reading
 
-- **まだ作成中なので、随時更新していきます。なので問題の難易度の順番もめちゃくちゃです。**
-- **なるべくポピュラーなものを採用していますが、ネタ切れであんまり聞かないものもあります笑**
-- **内容はいろいろな文献を調べて載っけてるので正しくないものもあるかもしれないので注意して下さい**
-- 【注意】このページを利用して、または関して生じた事に関しては、私は一切責任を負いません。すべて**自己責任**でお願い致します。
+1. I’ll use the Google translator to help me understand his original meaning. Pretty cool, right? It’s the time for NLP.
+2. I may add some additional materials and my own opinions to this repository.
+3. **I’ll discard the irrelevant parts** and mainly focus on the OpenCV parts.
 
-## Recent
-- 最近息切れしてきた
-- **【New!】2019.1.16. Q.61 - 64 細線化を追加**
-- 2019.1.15 Q.4 大津の二値化 Q.5 HSV　を修正
-- **【New!】2019.1.14. Q.58 - 59 ラベリング, Q.60 アルファブレンドを追加**
-- **【New!】2019.1.11. Q.54 - 57 テンプレートマッチングを追加**
-- **【New!】2019.1.10. Q.27 Bicubic や Q.36-40 JPEGにおける解答を一部修正しました。（画素値がオーバーフローした箇所の修正）、Tutorailにも説明を追加**
-- **【New!】2019.1.10. Q.51-53 モルフォロジー勾配 などを追加**
-- **2019.1.9. Q.47-50 モルフォロジー処理 などを追加**
+3. I’ll update this as soon as possible since I have to do my research project now.
 
-## 環境設定
+## Environment Setting
 
-Python-3.6でやって下さい。
-(解答はPython-3.6です)
+ 1. Go to [Miniconda](https://conda.io/miniconda.html) website, download and install it. 
 
-### 1. Minicondaのインストール
+ 2. Open your terminal, create a virtual environment using following command:
 
-https://conda.io/miniconda.html
-のサイトからMinicondaをインストールします。
+    ```bash
+    $ conda create python = 3.6 -n Image_Processing_100
+    ```
 
-Minicondaがインストールできたら、以下コマンドで仮想環境を作成します。
+3. Activate your virtual environment:
 
-```bash
-$ conda create python=3.6 -n gasyori100
-```
+   ```bash
+   $ source activate Image_Processing_100
+   ```
 
-作成できたら、以下コマンドで仮想環境を動作します。
+4. Install the packages:
 
-```bash
-$ source actiavte gasyori100
-```
+   ```bash
+   $ pip install -r requirement.txt
+   ```
 
-するとこうなります。
+## Test your environment
 
-```bash
-(gasyori100) :~/work_space/Gasyori100knock/ :$ 
-```
+1. Clone this repository into your local computer:
 
-### 2. パッケージのインストール
+   ```bash
+   $ git clone git@github.com:KuKuXia/Gasyori100knock.git
+   ```
 
-以下のコマンドで必要なパッケージをインストールします。
+2. In the Gasyori100knock folder, make a new file named sample.py, copy and paste the following code:
 
+   ```python
+   import cv2
+   
+   img = cv2.imread("assets/imori.jpg")
+   cv2.imshow("imori", img)
+   cv2.waitKey(0)
+   cv2.destroyAllWindows()
+   ```
 
-```bash
-$ pip install -r requirement.txt
-```
-
-### 3. 画像処理チュートリアル
-
-以下のファイルを作成し sample.py という名前で保存し、実行します。
-
-```python
-import cv2
-
-img = cv2.imread("assets/imori.jpg")
-cv2.imshow("imori", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-```
-
-```bash
-$ python sample.py
-```
-
-これで以下の画像が表示されれば成功です！
-何かボタンを押せば消えます。
+3. Save the file and run it. Successful if the following image is displayed with a new window! Then if you press any button, it disappears.
 
 
 ![](assets/sample.png)
 
-次に画像処理に関するnumpyの扱い方のために**Tutorial**フォルダを見てみて下さい。（もう知ってるという人はスキップして下さい。）
+ 4. Next, see the Tutorial folder to learn `numpy `related to image processing. (Please skip this if you already know.)
 
-これからは問題を解いていってください。それぞれのフォルダに問題内容が入っています。
-問では assets/imori.jpg を使用して下さい。
-各フォルダのREADMEに問題が書いてあります。
+ 5. From now on, please solve the Question. The Question contents are included in each folder. Please use 	`assets/imori.jpg` in the question. Questions are written in the README.md of each folder.
 
-- チュートリアル >> Tutorial
-- 問題1-10  >> Quetion_01_10
-- 問題11-20 >> Question_11_20
-- 問題21-30 >> Question_21_30
-- 問題31-40 >> Question_31_40
-- 問題41-50 >> Question_41_50
-- 問題51-60 >> Question_51_60
-- 問題61-70 >> Question_61_70
-- 問題71-80 >> Quesiton_71_80
-- 問題81-90 >> Question_81_90
-- 問題91-100 >> Question_91_100
+    
 
+## Content
 
-## 注意
+- Question >> Folder
+- Question 1-10 >> Quetion_01_10
+- Question 11 - 20 >> Question_ 11 _ 20
+- Question 21 - 30 >> Question_ 21 _ 30
+- Question 31 - 40 >> Question_ 31 _ 40
+- Question 41 - 50 >> Question_ 41 _ 50
+- Question 51 - 60 >> Question_ 51 _ 60
+- Question 61 - 70 >> Question_ 61 _ 70
+- Question 71 - 80 >> Quesiton_ 71 _ 80
+- Question 81 - 90 >> Question_ 81 _ 90
+- Question 91 - 100 >> Question_ 91 _ 100
 
-- 本稿は画像処理の基礎的な知識・理論を学ぶための教材です。
-- 解答ではなるべくコードを簡易化するために、main( )などを使用してしません。
-- numpyを使用しますが、numpyに関する基本知識は載せません。各自調べて下さい。
+## Note
 
+- This paper is a teaching material to learn fundamental knowledge and theory of image processing.
+- In the solution, we do not use main () etc. to simplify the code as much as possible.
+- We will use numpy, but we do not post basic knowledge about numpy. Please check each one.
 
-## 問題
+## Question 
 
-**未**になっている問題は解答未作成
+**Unresolved** issues are unanswered
 
-### [問題1 - 10](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_01_10)
+## [Question 1-10](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_01_10)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-|1|チャネル入れ替え| |6|減色処理 | |
-|2|グレースケール化 | |7|平均プーリング |
-|3|二値化 | |8|Maxプーリング | |
-|4|大津の二値化 | |9|ガウシアンフィルタ |
-|5|HSV変換 | |10|メディアンフィルタ |
+| Number |       Question       | Number |          Question          |
+| :----: | :------------------: | :----: | :------------------------: |
+|   1    |   Channel swapping   |   6    | Color reduction processing |
+|   2    |      Grayscale       |   7    |      Average pooling       |
+|   3    |     Binarization     |   8    |        Max pooling         |
+|   4    | Binarization of Otsu |   9    |      Gaussian filter       |
+|   5    |    HSV conversion    |   10   |       Median filter        |
 
-### [問題11 - 20](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_11_20)
+## [Question 11 - 20](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_11_20)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-|11|平滑化フィルタ | |16|Prewittフィルタ | 
-|12|モーションフィルタ | |17|Laplacianフィルタ |
-|13|MAX-MINフィルタ | |18|Embossフィルタ |
-|14|微分フィルタ | |19|LoGフィルタ | 
-|15|Sobelフィルタ | |20|ヒストグラム表示  | 
+| Number |      Question       | Number |     Question      |
+| :----: | :-----------------: | :----: | :---------------: |
+|   11   |  Smoothing filter   |   16   |  Prewitt filter   |
+|   12   |    Motion filter    |   17   | Laplacian filter  |
+|   13   |   MAX-MIN filter    |   18   |   Emboss filter   |
+|   14   | Differential filter |   19   |    LoG filter     |
+|   15   |    Sobel filter     |   20   | Histogram display |
 
-### [問題21 - 30](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_21_30)
+## [Question 21 - 30](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_21_30)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-|21|ヒストグラム正規化 | |26|Bi-linear補間|
-|22|ヒストグラム操作 | |27|Bi-cubic補間|
-| 23|ヒストグラム平坦化 | |28|アフィン変換(平行移動)|
-| 24|ガンマ補正| |29|アフィン変換(拡大縮小)|
-|25|最近傍補間| |30|アフィン変換(回転)|
+| Number |            Question            | Number |              Question               |
+| :----: | :----------------------------: | :----: | :---------------------------------: |
+|   21   |    Histogram normalization     |   26   |       Bi-linear interpolation       |
+|   22   |      Histogram operation       |   27   |       Bi-cubic interpolation        |
+|   23   |      Histogram flattening      |   28   | Affine transformation (translation) |
+|   34   |        Gamma correction        |   29   |   Affine transformation (scaling)   |
+|   25   | Nearest neighbor interpolation |   30   |  Affine transformation (rotation)   |
 
-### [問題31 - 40](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_31_40)
+## [Question 31 - 40](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_31_40)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-|31|アフィン変換(スキュー)| | 36| JPEG圧縮 (Step.1)離散コサイン変換 |
-|32**未**|フーリエ変換 | |37| PSNR|
-|33**未**|フーリエ変換 ローパスフィルタ| |38| JPEG圧縮 (Step.2)DCT+量子化|
-|34**未**|フーリエ変換 ハイパスフィルタ| |39| JPEG圧縮 (Step.3)YCbCr表色系|
-|35**未**|フーリエ変換 バンドパスフィルタ| | 40| JPEG圧縮 (Step.4)YCbCr+DCT+量子化 |
+|     Number     |              Question              | Number |                          Question                          |
+| :------------: | :--------------------------------: | :----: | :--------------------------------------------------------: |
+|       31       |    Affine transformation (skew)    |   36   |    JPEG compression (Step 1) Discrete cosine transform     |
+| 32 **not yet** |         Fourier transform          |   37   |                            PSNR                            |
+| 33 **not yet** | Fourier transform low pass filter  |   38   |        JPEG compression (Step 2) DCT + quantization        |
+| 34 **not yet** | Fourier transform high pass filter |   39   | JPEG compression (Step 3) YCbCr color specification system |
+| 35 **not yet** | Fourier transform band pass filter |   40   |    JPEG compression (Step 4) YCbCr + DCT + quantization    |
 
-### [問題41 - 50](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_41_50)
+## [Question 41 - 50](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_41_50)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-| 41 | Cannyエッジ検出 (Step.1) エッジ強度 | | 46| Hough変換・直線検出 (Step.3) Hough逆変換 |
-| 42 | Cannyエッジ検出 (Step.2) 細線化 | | 47 |モルフォロジー処理(膨張) |
-| 43 | Cannyエッジ検出 (Step.3) ヒステリシス閾処理 | | 48 |モルフォロジー処理(収縮) |
-| 44| Hough変換・直線検出 (Step.1) Hough変換 | | 49 |オープニング処理 |
-| 45| Hough変換・直線検出 (Step.2) NMS | | 50 |クロージング処理 |
+| number |                           Question                           | number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   41   |         Canny edge detection (Step 1) Edge intensity         |   46   | Hough conversion · Line detection (Step 3) Hough inverse transformation |
+|   42   |            Canny edge detection (Step 2) thinning            |   47   |             Morphological processing (expansion)             |
+|   43   | Canny edge detection (Step 3) Hysteresis threshold processing |   48   |             Morphology processing (contraction)              |
+|   44   |  Hough transform · Line detection (Step 1) Hough transform   |   49   |                       Opening process                        |
+|   45   |        Hough conversion · Line detection (Step 2) NMS        |   50   |                      Closing processing                      |
 
-### [問題51 - 60](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_51_60)
+## [Question 51 - 60](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_51_60)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-| 51 |モルフォロジー勾配 | | 56 |テンプレートマッチング NCC |
-| 52 |トップハット変換 | | 57 |テンプレートマッチング ZNCC |
-| 53 |ブラックハット変換 | | 58 |ラベリング 4近傍 |
-| 54 |テンプレートマッチング SSD | | 59 |ラベリング 8近傍 |
-| 55 |テンプレートマッチング SAD | | 60 |アルファブレンド |
+|       Question        | Number | Number |        Question         |
+| :-------------------: | :----: | :----: | :---------------------: |
+|  Morphology gradient  |   51   |   56   |  Template matching NCC  |
+|  Top hat conversion   |   52   |   57   | Template matching ZNCC  |
+| Black hat conversion  |   53   |   58   |     Labeling 4 Near     |
+| Template matching SSD |   54   |   59   | Labeling 8 neighborhood |
+| Template matching SAD |   55   |   60   |       Alpha Blend       |
 
+## [Question 61 - 70](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_61_70)
 
-### [問題61 - 70](https://github.com/yoyoyo-yo/Gasyori100knock/tree/master/Question_61_70)
-
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-| 61 | 4-連結数
-| 62 | 8-連結数
-| 63 | 細線化
-| 64**未** | ヒルディッチの細線化
-
-
+|     number     |         Question          | number | Question |
+| :------------: | :-----------------------: | :----: | :------: |
+|       61       |    4-connected number     |        |          |
+|       62       | 8 - number of connections |        |          |
+|       63       |         Thinning          |        |          |
+| 64 **not yet** |    Hiruditchi thinning    |        |          |
 
 
 ## TODO

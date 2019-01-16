@@ -2,12 +2,19 @@ import cv2
 import numpy as np
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float)
+img = cv2.imread("imori.jpg")
+img_origion = img.copy()
+img = img.astype(np.float)
 b = img[:, :, 0].copy()
 g = img[:, :, 1].copy()
 r = img[:, :, 2].copy()
 
 # Gray scale
+# You could use the cv2.cvtColor() to change the image to gray scale.
+gray = cv2.cvtColor(img_origion, cv2.COLOR_BGR2GRAY)
+cv2.imshow("gray",gray)
+
+
 out = 0.2126 * r + 0.7152 * g + 0.0722 * b
 out = out.astype(np.uint8)
 
