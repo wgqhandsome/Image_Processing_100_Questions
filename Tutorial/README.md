@@ -50,7 +50,6 @@ Use `img.shape` to get image size information. This is in order of (height, widt
 ```bash
 >>> img.shape
 (128, 128, 3)
->>>
 ```
 
 To take a type, use `img.dtype`.  `uint8 `is an unsigned int and means 8 bits. The image is expressed in 256 steps, usually 0 to 255, each of RGB components. For example, the red pixel is (R, G, B) = (255, 0, 0), white is (R, G, B) = (255, 255, 255). When I make it to an image, the image will be wrong unless I make it to this type without fail. (I will explain it later.)
@@ -58,7 +57,6 @@ To take a type, use `img.dtype`.  `uint8 `is an unsigned int and means 8 bits. T
 ```bash
 >>> img.dtype
 dtype('uint8')
->>>
 ```
 
 To display images, use cv2.imshow (). The first argument to cv2.imshow () requires the name of the window (you do not have to worry about it) and the second argument requires an image.
@@ -67,8 +65,6 @@ To display images, use cv2.imshow (). The first argument to cv2.imshow () requir
 
 ```bash
 >>> cv2.imshow('', img); cv2.waitKey(0)
-102
->>> 
 ```
 
 |Display(sample1.png)|
@@ -93,8 +89,6 @@ We will introduce about 4 in the next chapter "Fiddling with pixels".
 
 ```bash
 >>> cv2.imshow('', _img); cv2.waitKey(0)
-102
->>>
 ```
 |Display(sample2.png)|
 |:---:|
@@ -109,7 +103,6 @@ For example, if you want to tinker with pixel values of x = 30, y = 20, do this.
 ```bash
 >>> img[20, 30]
 array([232, 178, 171], dtype=uint8)
->>> 
 ```
 
 Furthermore, when taking the G component of x = 30, y = 20, do this.
@@ -117,7 +110,6 @@ Furthermore, when taking the G component of x = 30, y = 20, do this.
 ```bash
 >>> img[20, 30, 1]
 178
->>> 
 ```
 
 From here, I will enter the main subject of numpy.
@@ -131,7 +123,6 @@ For example, to see y = 20, x = [30, 32], do this. If it is 30:33 it can be take
 array([[232, 178, 171],
 [209, 156, 153],
 [134,  85,  77]], dtype=uint8)
->>> 
 ```
 
 For example, to make the upper left of the image (x = [0, 50], y = [0, 50]) black can be done like this. copy () is described below.
@@ -140,8 +131,6 @@ For example, to make the upper left of the image (x = [0, 50], y = [0, 50]) blac
 >>> img2 = img.copy()
 >>> img2[:50, :50] = 0
 >>> cv2.imshow("", img2); cv2.waitKey(0)
-0
->>>
 ```
 
 |Display(sample3.png)|
@@ -185,7 +174,6 @@ Let's do this, for example, when saving the previous img2 as *`sample.jpg`* . If
 ```bash
 >>> cv2.imwrite("sample.jpg", img2)
 True
->>>
 ```
 
 ## Practice
@@ -196,13 +184,11 @@ Answer
 
 ```bash
 >>> import cv2
->>> img = cv2.imread("imori.jpg")
+>>> img = cv2.imread("./assets/imori.jpg")
 >>> img3 = img.copy()
->>> H, W, C = img.shape
+>>> H, W, C = img3.shape
 >>> img3[:H//2, :W//2] = img3[:H//2, :W//2, (2, 1, 0)]
 >>> cv2.imshow('', img3); cv2.waitKey(0)
-102
->>> 
 ```
 
 |Display (sample4.png)|
