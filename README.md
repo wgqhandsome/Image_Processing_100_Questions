@@ -2,9 +2,9 @@
 
 ---
 
-This is the English version of image processing 100 questions.  The [original Japanese repository](https://github.com/yoyoyo-yo/Gasyori100knock) was created by [yoyoyo-yo](https://github.com/yoyoyo-yo).  It’s updated by him now.  To be honest, I can not speak Japanese. Since the code is language independent and I’m preparing for my interview question about computer vision now. I decided to translate the English version of this 100 questions.
+This is the English version of image processing 100 questions.  The [original Japanese repository](https://github.com/yoyoyo-yo/Gasyori100knock) was created by [yoyoyo-yo](https://github.com/yoyoyo-yo).  It’s updated by him now.  To be honest, I can not speak Japanese. Since the code is language independent and I’m preparing for my interview questions about computer vision now. I decided to translate the English version of this 100 questions.
 
-Hope this could help more people and thanks for [yoyoyo-yo](https://github.com/yoyoyo-yo) for his great effort.  
+Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com/yoyoyo-yo) great effort.  
 
 ## Before Reading
 
