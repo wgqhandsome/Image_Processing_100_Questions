@@ -153,7 +153,7 @@ For example, let's change the B component of a part to a value of 260 by making 
 |:---:|
 |![](sample5.png)|
 
-## Copy image
+## Copy Image
 
 Let's use copy() when you want to copy the image to another variable.
 
@@ -165,7 +165,7 @@ Simply setting `img2 = img` will save the address of the image, so if you change
 
 If there is no special use, **let's copy the image with copy()** .
 
-## Save image
+## Save Image
 
 Let's use cv2.imwrite() for saving.
 
