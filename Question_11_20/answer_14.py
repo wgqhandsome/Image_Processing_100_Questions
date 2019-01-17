@@ -18,23 +18,32 @@ K_size = 3
 
 ## Zero padding
 pad = K_size // 2
-out = np.zeros((H + pad*2, W + pad*2), dtype=np.float)
-out[pad:pad+H, pad:pad+W] = gray.copy().astype(np.float)
-tmp = out.copy()
+out_h = np.zeros((H + pad * 2, W + pad * 2), dtype=np.float)
+out_v = np.zeros((H + pad * 2, W + pad * 2), dtype=np.float)
+out_h[pad:pad + H, pad:pad + W] = gray.copy().astype(np.float)
+out_v[pad:pad + H, pad:pad + W] = gray.copy().astype(np.float)
+
+tmp = out_h.copy()
+
+
 
 ## Sobel vertical
-#K = [[0., -1., 0.],[0., 1., 0.],[0., 0., 0.]]
+K_v = [[0., -1., 0.], [0., 1., 0.], [0., 0., 0.]]
 ## Sobel horizontal
-K = [[0., 0., 0.],[-1., 1., 0.], [0., 0., 0.]]
+K_h = [[0., 0., 0.], [-1., 1., 0.], [0., 0., 0.]]
 
 for y in range(H):
     for x in range(W):
-        out[pad+y, pad+x] = np.mean(K * (tmp[y:y+K_size, x:x+K_size]))
+        out_h[pad + y, pad + x] = np.mean(K_h * (tmp[y:y + K_size, x:x + K_size]))
+        out_v[pad + y, pad + x] = np.mean(K_v * (tmp[y:y + K_size, x:x + K_size]))
 
-out = out[pad:pad+H, pad:pad+W].astype(np.uint8)
+out_h = out_h[pad:pad + H, pad:pad + W].astype(np.uint8)
+out_v = out_v[pad:pad + H, pad:pad + W].astype(np.uint8)
 
 # Save result
-cv2.imwrite("out.jpg", out)
-cv2.imshow("result", out)
+cv2.imwrite("answer_15_h.jpg", out_h)
+cv2.imwrite("answer_15_v.jpg", out_v)
+cv2.imshow("result_h", out_h)
+cv2.imshow("result_v", out_v)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
