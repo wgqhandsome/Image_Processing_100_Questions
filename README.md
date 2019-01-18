@@ -36,7 +36,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
    $ pip install -r requirement.txt
    ```
 
-## Test your environment
+## Testing Your Environment
 
 1. Clone this repository into your local computer:
 
@@ -97,13 +97,13 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 1-10](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_01_10)
 
-| Number |       Question       | Number |          Question          |
-| :----: | :------------------: | :----: | :------------------------: |
-|   1    |   Channel swapping   |   6    | Color reduction processing |
-|   2    |      Grayscale       |   7    |      Average pooling       |
-|   3    |     Binarization     |   8    |        Max pooling         |
-|   4    | Binarization of Otsu |   9    |      Gaussian filter       |
-|   5    |    HSV conversion    |   10   |       Median filter        |
+| Number |                           Question                           | Number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   1    |  [Channel swapping](./Question_01_10/1_Channel_Swapping.py)  |   6    | [Discretization of Color](./Question_01_10/6_Discretization_of_Color.py) |
+|   2    |         [Grayscale](./Question_01_10/2_Grayscale.py)         |   7    |   [Average Pooling](./Question_01_10/7_Average_Pooling.py)   |
+|   3    |      [Binarization](./Question_01_10/3_Binarization.py)      |   8    |       [Max pooling](./Question_01_10/8_Max_Pooling.py)       |
+|   4    | [Binarization of Otsu](./Question_01_10/4_Binarization_of_Otsu.py) |   9    |   [Gaussian Filter](./Question_01_10/9_Gaussian_Filter.py)   |
+|   5    |    [HSV Conversion](./Question_01_10/5_HSV_Conversion.py)    |   10   |    [Median Filter](./Question_01_10/10_Median_Filter.py)     |
 
 ## [Question 11 - 20](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_11_20)
 
