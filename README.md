@@ -75,7 +75,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 ​            Question         >>        Folder
 
 - [x] Question 1 - 10   >> Question_01_10
-- [ ] Question 11 - 20 >> Question_ 11 _ 20
+- [x] Question 11 - 20 >> Question_ 11 _ 20
 - [ ] Question 21 - 30 >> Question_ 21 _ 30
 - [ ] Question 31 - 40 >> Question_ 31 _ 40
 - [ ] Question 41 - 50 >> Question_ 41 _ 50
@@ -101,19 +101,19 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
 |   1    |  [Channel swapping](./Question_01_10/1_Channel_Swapping.py)  |   6    | [Discretization of Color](./Question_01_10/6_Discretization_of_Color.py) |
 |   2    |         [Grayscale](./Question_01_10/2_Grayscale.py)         |   7    |   [Average Pooling](./Question_01_10/7_Average_Pooling.py)   |
-|   3    |      [Binarization](./Question_01_10/3_Binarization.py)      |   8    |       [Max pooling](./Question_01_10/8_Max_Pooling.py)       |
+|   3    |      [Binarization](./Question_01_10/3_Binarization.py)      |   8    |       [Max Pooling](./Question_01_10/8_Max_Pooling.py)       |
 |   4    | [Binarization of Otsu](./Question_01_10/4_Binarization_of_Otsu.py) |   9    |   [Gaussian Filter](./Question_01_10/9_Gaussian_Filter.py)   |
 |   5    |    [HSV Conversion](./Question_01_10/5_HSV_Conversion.py)    |   10   |    [Median Filter](./Question_01_10/10_Median_Filter.py)     |
 
 ## [Question 11 - 20](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_11_20)
 
-| Number |      Question       | Number |     Question      |
-| :----: | :-----------------: | :----: | :---------------: |
-|   11   |  Smoothing filter   |   16   |  Prewitt filter   |
-|   12   |    Motion filter    |   17   | Laplacian filter  |
-|   13   |   MAX-MIN filter    |   18   |   Emboss filter   |
-|   14   | Differential filter |   19   |    LoG filter     |
-|   15   |    Sobel filter     |   20   | Histogram display |
+| Number |                           Question                           | Number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   11   | [Smoothing Filter](./Question_11_20/11_Smoothing_Filter.py)  |   16   |   [Prewitt Filter](./Question_11_20/16_Prewitt_Filter.py)    |
+|   12   |    [Motion Filter](./Question_11_20/12_Motion_Filter.py)     |   17   | [Laplacian Filter](./Question_11_20/17_Laplacian_Filter.py)  |
+|   13   |   [MAX_MIN Filter](./Question_11_20/13_Max_Min_Filter.py)    |   18   |    [Emboss Filter](./Question_11_20/18_Emboss_Filter.py)     |
+|   14   | [Differential Filter](./Question_11_20/14_Differential_Filter.py) |   19   |       [LoG Filter](./Question_11_20/19_LoG_Filter.py)        |
+|   15   |     [Sobel Filter](./Question_11_20/15_Sobel_Filter.py)      |   20   | [Histogram Display](./Question_11_20/20_Histogram_Display.py) |
 
 ## [Question 21 - 30](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_21_30)
 

@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float)
+img = cv2.imread("./imori.jpg").astype(np.float)
 H, W, C = img.shape
 
 b = img[:, :, 0].copy()
@@ -22,10 +22,8 @@ out = np.zeros((H + pad*2, W + pad*2), dtype=np.float)
 out[pad:pad+H, pad:pad+W] = gray.copy().astype(np.float)
 tmp = out.copy()
 
-## Sobel vertical
-#K = [[1., 0., -1.],[1., 0., -1.],[1., 0., -1.]]
-## Sobel horizontal
-K = [[-1., -1., -1.],[0., 0., 0.], [1., 1., 1.]]
+## Laplacian vertical
+K = [[0., 1., 0.],[1., -4., 1.], [0., 1., 0.]]
 
 for y in range(H):
     for x in range(W):
