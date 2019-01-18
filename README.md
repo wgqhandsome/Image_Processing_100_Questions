@@ -157,21 +157,23 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 61 - 70](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_61_70)
 
-|     number     |         Question          | number | Question |
-| :------------: | :-----------------------: | :----: | :------: |
-|       61       |    4-connected number     |        |          |
-|       62       | 8 - number of connections |        |          |
-|       63       |         Thinning          |        |          |
-| 64 **not yet** |    Hiruditchi thinning    |        |          |
+|     Number     |          Problem          | Number |                     Problem                      |
+| :------------: | :-----------------------: | :----: | :----------------------------------------------: |
+|       61       |    4-connected number     |   66   | HOG (Step 1) Gradient intensity · Gradient angle |
+|       62       | 8 - number of connections |   67   |         HOG (Step 2) gradient histogram          |
+|       63       |         Thinning          |   68   |       HOG (Step 3) Histogram normalization       |
+| 64 **not yet** |    Hiruditchi thinning    |   69   |      HOG (Step 4) Drawing feature quantity       |
+|       65       |    Zhang-Suen thinning    |   70   |                  Color tracking                  |
 
+## [Problem 71 - 80](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_71_80)
 
-|番号|問題||番号|問題|
-|:---:|:---:|:---:|:---:|:---:|
-| 71 | マスキング | | 76 | 顕著性マップ
-| 72 | マスキング(カラートラッキングとモルフォロジー)
-| 73 | 縮小と拡大
-| 74 | ピラミッド差分による高周波成分の抽出
-| 74 | ガウシアンピラミッド
+|     Number     |          Problem          | Number |                     Problem                      |
+| :------------: | :-----------------------: | :----: | :----------------------------------------------: |
+|       61       |    4-connected number     |   66   | HOG (Step 1) Gradient intensity · Gradient angle |
+|       62       | 8 - number of connections |   67   |         HOG (Step 2) gradient histogram          |
+|       63       |         Thinning          |   68   |       HOG (Step 3) Histogram normalization       |
+| 64 **not yet** |    Hiruditchi thinning    |   69   |      HOG (Step 4) Drawing feature quantity       |
+|       65       |    Zhang-Suen thinning    |   70   |                  Color tracking                  |
 
 ## TODO
 
