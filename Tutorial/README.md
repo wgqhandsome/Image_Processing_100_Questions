@@ -2,7 +2,7 @@
 
 Here, we will introduce some basic usage of numpy in image processing.
 
-**Numpy** is a type of package prepared by python (something like a library in C). 
+**Numpy** is a type of package prepared by python (something like a library in C).
 
 In addition, there is a library called **OpenCV** in image processing, and it has various APIs.
 
@@ -18,13 +18,13 @@ Please do it in interpreter form instead of .py file from here.
    source activate Image_Processing_100
    ```
 
-2. Then type "python". 
+2. Then type "python".
 
 ```bash
-Python 3.6.7 |Anaconda, Inc.| (default, Oct 23 2018, 14:01:38) 
+Python 3.6.7 |Anaconda, Inc.| (default, Oct 23 2018, 14:01:38)
 [GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
->>> 
+>>>
 ```
 ## Import
 
@@ -61,7 +61,7 @@ dtype('uint8')
 
 To display images, use cv2.imshow (). The first argument to cv2.imshow () requires the name of the window (you do not have to worry about it) and the second argument requires an image.
 
-`**cv2.waitKey(0) `has the function of displaying an image until something is input from the keyboard. 
+`**cv2.waitKey(0) `has the function of displaying an image until something is input from the keyboard.
 
 ```bash
 >>> cv2.imshow('', img); cv2.waitKey(0)
@@ -197,4 +197,4 @@ Answer
 
 That concludes the tutorial.
 
-Please solve the problem as well! ! ! ! 
+Please solve the problem as well! ! ! !

@@ -16,7 +16,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## Environment Setting
 
- 1. Go to [Miniconda](https://conda.io/miniconda.html) website, download and install it. 
+ 1. Go to [Miniconda](https://conda.io/miniconda.html) website, download and install it.
 
  2. Open your terminal, create a virtual environment using following command:
 
@@ -48,14 +48,14 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
    ```python
    import cv2
-   
+
    img = cv2.imread("assets/imori.jpg")
    cv2.imshow("imori", img)
    cv2.waitKey(0)
    cv2.destroyAllWindows()
    ```
 
-3. Save the file and run it. 
+3. Save the file and run it.
    ```bash
    python ./sample.py
    ```
@@ -68,7 +68,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
  5. From now on, please solve the Question. The Question contents are included in each folder. Please use 	`assets/imori.jpg` in the question. Questions are written in the README.md of each folder.
 
-    
+
 
 ## Content
 
@@ -91,7 +91,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 - In the solution, we do not use main () etc. to simplify the code as much as possible.
 - We will use numpy, but we do not post basic knowledge about numpy. Please check each one.
 
-## Question 
+## Question
 
 **Unresolved** issues are unanswered
 
@@ -165,7 +165,14 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 | 64 **not yet** |    Hiruditchi thinning    |        |          |
 
 
+|番号|問題||番号|問題|
+|:---:|:---:|:---:|:---:|:---:|
+| 71 | マスキング | | 76 | 顕著性マップ
+| 72 | マスキング(カラートラッキングとモルフォロジー)
+| 73 | 縮小と拡大
+| 74 | ピラミッド差分による高周波成分の抽出
+| 74 | ガウシアンピラミッド
+
 ## TODO
 
-Hough, Gabor, HOG, TempleteMatching
-
+Hough, Gabor, adaptivebinalizatino
