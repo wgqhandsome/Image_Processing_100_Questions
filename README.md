@@ -137,7 +137,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 41 - 50](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_41_50)
 
-| number |                           Question                           | number |                           Question                           |
+| Number |                           Question                           | Number |                           Question                           |
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
 |   41   |         Canny edge detection (Step 1) Edge intensity         |   46   | Hough conversion · Line detection (Step 3) Hough inverse transformation |
 |   42   |            Canny edge detection (Step 2) thinning            |   47   |             Morphological processing (expansion)             |
@@ -147,13 +147,13 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 51 - 60](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_51_60)
 
-|       Question        | Number | Number |        Question         |
-| :-------------------: | :----: | :----: | :---------------------: |
-|  Morphology gradient  |   51   |   56   |  Template matching NCC  |
-|  Top hat conversion   |   52   |   57   | Template matching ZNCC  |
-| Black hat conversion  |   53   |   58   |     Labeling 4 Near     |
-| Template matching SSD |   54   |   59   | Labeling 8 neighborhood |
-| Template matching SAD |   55   |   60   |       Alpha Blend       |
+| Number |       Question        | Number |        Question         |
+| :----: | :-------------------: | :----: | :---------------------: |
+|   51   |  Morphology gradient  |   56   |  Template matching NCC  |
+|   52   |  Top hat conversion   |   57   | Template matching ZNCC  |
+|   53   | Black hat conversion  |   58   |     Labeling 4 Near     |
+|   54   | Template matching SSD |   59   | Labeling 8 neighborhood |
+|   55   | Template matching SAD |   60   |       Alpha Blend       |
 
 ## [Question 61 - 70](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_61_70)
 
