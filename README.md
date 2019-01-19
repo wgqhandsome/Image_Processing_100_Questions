@@ -16,7 +16,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## Environment Setting
 
- 1. Go to [Miniconda](https://conda.io/miniconda.html) website, download and install it. 
+ 1. Go to [Miniconda](https://conda.io/miniconda.html) website, download and install it.
 
  2. Open your terminal, create a virtual environment using following command:
 
@@ -36,7 +36,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
    $ pip install -r requirement.txt
    ```
 
-## Test your environment
+## Testing Your Environment
 
 1. Clone this repository into your local computer:
 
@@ -48,14 +48,14 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
    ```python
    import cv2
-   
+
    img = cv2.imread("assets/imori.jpg")
    cv2.imshow("imori", img)
    cv2.waitKey(0)
    cv2.destroyAllWindows()
    ```
 
-3. Save the file and run it. 
+3. Save the file and run it.
    ```bash
    python ./sample.py
    ```
@@ -68,14 +68,14 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
  5. From now on, please solve the Question. The Question contents are included in each folder. Please use 	`assets/imori.jpg` in the question. Questions are written in the README.md of each folder.
 
-    
+
 
 ## Content
 
 ​            Question         >>        Folder
 
 - [x] Question 1 - 10   >> Question_01_10
-- [ ] Question 11 - 20 >> Question_ 11 _ 20
+- [x] Question 11 - 20 >> Question_ 11 _ 20
 - [ ] Question 21 - 30 >> Question_ 21 _ 30
 - [ ] Question 31 - 40 >> Question_ 31 _ 40
 - [ ] Question 41 - 50 >> Question_ 41 _ 50
@@ -91,29 +91,29 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 - In the solution, we do not use main () etc. to simplify the code as much as possible.
 - We will use numpy, but we do not post basic knowledge about numpy. Please check each one.
 
-## Question 
+## Question
 
 **Unresolved** issues are unanswered
 
 ## [Question 1-10](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_01_10)
 
-| Number |       Question       | Number |          Question          |
-| :----: | :------------------: | :----: | :------------------------: |
-|   1    |   Channel swapping   |   6    | Color reduction processing |
-|   2    |      Grayscale       |   7    |      Average pooling       |
-|   3    |     Binarization     |   8    |        Max pooling         |
-|   4    | Binarization of Otsu |   9    |      Gaussian filter       |
-|   5    |    HSV conversion    |   10   |       Median filter        |
+| Number |                           Question                           | Number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   1    |  [Channel swapping](./Question_01_10/1_Channel_Swapping.py)  |   6    | [Discretization of Color](./Question_01_10/6_Discretization_of_Color.py) |
+|   2    |         [Grayscale](./Question_01_10/2_Grayscale.py)         |   7    |   [Average Pooling](./Question_01_10/7_Average_Pooling.py)   |
+|   3    |      [Binarization](./Question_01_10/3_Binarization.py)      |   8    |       [Max Pooling](./Question_01_10/8_Max_Pooling.py)       |
+|   4    | [Binarization of Otsu](./Question_01_10/4_Binarization_of_Otsu.py) |   9    |   [Gaussian Filter](./Question_01_10/9_Gaussian_Filter.py)   |
+|   5    |    [HSV Conversion](./Question_01_10/5_HSV_Conversion.py)    |   10   |    [Median Filter](./Question_01_10/10_Median_Filter.py)     |
 
 ## [Question 11 - 20](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_11_20)
 
-| Number |      Question       | Number |     Question      |
-| :----: | :-----------------: | :----: | :---------------: |
-|   11   |  Smoothing filter   |   16   |  Prewitt filter   |
-|   12   |    Motion filter    |   17   | Laplacian filter  |
-|   13   |   MAX-MIN filter    |   18   |   Emboss filter   |
-|   14   | Differential filter |   19   |    LoG filter     |
-|   15   |    Sobel filter     |   20   | Histogram display |
+| Number |                           Question                           | Number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   11   | [Smoothing Filter](./Question_11_20/11_Smoothing_Filter.py)  |   16   |   [Prewitt Filter](./Question_11_20/16_Prewitt_Filter.py)    |
+|   12   |    [Motion Filter](./Question_11_20/12_Motion_Filter.py)     |   17   | [Laplacian Filter](./Question_11_20/17_Laplacian_Filter.py)  |
+|   13   |   [MAX_MIN Filter](./Question_11_20/13_Max_Min_Filter.py)    |   18   |    [Emboss Filter](./Question_11_20/18_Emboss_Filter.py)     |
+|   14   | [Differential Filter](./Question_11_20/14_Differential_Filter.py) |   19   |       [LoG Filter](./Question_11_20/19_LoG_Filter.py)        |
+|   15   |     [Sobel Filter](./Question_11_20/15_Sobel_Filter.py)      |   20   | [Histogram Display](./Question_11_20/20_Histogram_Display.py) |
 
 ## [Question 21 - 30](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_21_30)
 
@@ -137,7 +137,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 41 - 50](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_41_50)
 
-| number |                           Question                           | number |                           Question                           |
+| Number |                           Question                           | Number |                           Question                           |
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
 |   41   |         Canny edge detection (Step 1) Edge intensity         |   46   | Hough conversion · Line detection (Step 3) Hough inverse transformation |
 |   42   |            Canny edge detection (Step 2) thinning            |   47   |             Morphological processing (expansion)             |
@@ -147,25 +147,34 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 51 - 60](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_51_60)
 
-|       Question        | Number | Number |        Question         |
-| :-------------------: | :----: | :----: | :---------------------: |
-|  Morphology gradient  |   51   |   56   |  Template matching NCC  |
-|  Top hat conversion   |   52   |   57   | Template matching ZNCC  |
-| Black hat conversion  |   53   |   58   |     Labeling 4 Near     |
-| Template matching SSD |   54   |   59   | Labeling 8 neighborhood |
-| Template matching SAD |   55   |   60   |       Alpha Blend       |
+| Number |       Question        | Number |        Question         |
+| :----: | :-------------------: | :----: | :---------------------: |
+|   51   |  Morphology gradient  |   56   |  Template matching NCC  |
+|   52   |  Top hat conversion   |   57   | Template matching ZNCC  |
+|   53   | Black hat conversion  |   58   |     Labeling 4 Near     |
+|   54   | Template matching SSD |   59   | Labeling 8 neighborhood |
+|   55   | Template matching SAD |   60   |       Alpha Blend       |
 
 ## [Question 61 - 70](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_61_70)
 
-|     number     |         Question          | number | Question |
-| :------------: | :-----------------------: | :----: | :------: |
-|       61       |    4-connected number     |        |          |
-|       62       | 8 - number of connections |        |          |
-|       63       |         Thinning          |        |          |
-| 64 **not yet** |    Hiruditchi thinning    |        |          |
+|     Number     |          Problem          | Number |                     Problem                      |
+| :------------: | :-----------------------: | :----: | :----------------------------------------------: |
+|       61       |    4-connected number     |   66   | HOG (Step 1) Gradient intensity · Gradient angle |
+|       62       | 8 - number of connections |   67   |         HOG (Step 2) gradient histogram          |
+|       63       |         Thinning          |   68   |       HOG (Step 3) Histogram normalization       |
+| 64 **not yet** |    Hiruditchi thinning    |   69   |      HOG (Step 4) Drawing feature quantity       |
+|       65       |    Zhang-Suen thinning    |   70   |                  Color tracking                  |
 
+## [Problem 71 - 80](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_71_80)
+
+|     Number     |          Problem          | Number |                     Problem                      |
+| :------------: | :-----------------------: | :----: | :----------------------------------------------: |
+|       61       |    4-connected number     |   66   | HOG (Step 1) Gradient intensity · Gradient angle |
+|       62       | 8 - number of connections |   67   |         HOG (Step 2) gradient histogram          |
+|       63       |         Thinning          |   68   |       HOG (Step 3) Histogram normalization       |
+| 64 **not yet** |    Hiruditchi thinning    |   69   |      HOG (Step 4) Drawing feature quantity       |
+|       65       |    Zhang-Suen thinning    |   70   |                  Color tracking                  |
 
 ## TODO
 
-Hough, Gabor, HOG, TempleteMatching
-
+Hough, Gabor, adaptivebinalizatino

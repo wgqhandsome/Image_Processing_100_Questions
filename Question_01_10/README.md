@@ -1,6 +1,6 @@
 # Q. 1 - 10
 
-## Q.1. Channel Swapping
+## Q.1: Channel Swapping
 
 ### Detail: Read the image and change RGB in order of BGR.
 
@@ -16,9 +16,9 @@ red = img[:, :, 2].copy()
 |:---:|:---:|
 |![](imori.jpg)|![](answer_1.jpg)|
 
-answer >> answer_1.py
+answer >> [1_Channel_Swapping.py](./1_Channel_Swapping.py)
 
-## Q.2. Grayscale
+## Q.2: Grayscale
 
 ### Detail: Make the image grayscale. 
 
@@ -32,9 +32,9 @@ $$
 |:---:|:---:|
 |![](imori.jpg)|![](answer_2.jpg)|
 
-Answer >> answer_2.py
+Answer >> [2_Grayscale.py](./2_Grayscale.py)
 
-## Q.3. Binarization 
+## Q.3: Binarization 
 
 Binarize the image. Binarization is a method of expressing images as binary black and white. Here, the threshold is set to 128 in gray scale and binarized by the following equation.
 
@@ -46,9 +46,9 @@ y = 0 if y < 128 else 255
 |:---:|:---:|
 |![](imori.jpg)|![](answer_3.jpg)|
 
-Answer >> answer_3.py
+Answer >> [3_Binarization.py](./3_Binarization.py)
 
-## Q.4. Binarization of Otsu
+## Q.4: Binarization of Otsu
 
 ### Detail：Implement Otsu's binarization. 
 
@@ -78,10 +78,10 @@ argmax_{t} X = argmax_{t} Sb^2
 |:---:|:---:|
 |![](imori.jpg)|![](answer_4.jpg)|
 
-Answer >> answer_4.py
+Answer >> [4_Binarization_of_Otsu.py](./4_Binarization_of_Otsu.py)
 
 
-## Q.5. HSV Conversion
+## Q.5: HSV Conversion
 
 ### Detail: Implement HSV conversion and flip Hue H.
 
@@ -132,9 +132,9 @@ In this case, invert the hue H (add 180) and display it as RGB and display the i
 |:---:|:---:|
 |![](imori.jpg)|![](answer_5.jpg)|
 
-Answer >> answer_5.py
+Answer >> [5_HSV_Conversion.py](./5_HSV_Conversion.py)
 
-## Q.6. Reducing color
+## Q.6: Discretization of Color
 
 ### Detail:
 
@@ -150,9 +150,9 @@ val = {  32  (0 <= val < 63)
 |:---:|:---:|
 |![](imori.jpg)|![](answer_6.jpg)|
 
-Answer >> answer_6.py
+Answer >> [6_Discretization_of_Color.py](./6_Discretization_of_Color.py)
 
-## Q.7. Average pooling
+## Q.7: Average Pooling
 
 In this case, the image is divided into grids (divide it into certain fixed-length regions), and the value in the region is filled with the average value in the region (cell). The operation of dividing the grid in this way and **obtaining** the representative value in that area is called **pooling** . These pooling operations play an important role in **CNN (Convolutional Neural Network)** .
 
@@ -168,8 +168,8 @@ Here imori.jpg is 128x128, so divide the grid into 8x8 and average pool.
 |:---:|:---:|
 |![](imori.jpg)|![](answer_7.jpg)|
 
-Answer >> answer_7.py
-## Q.8. Max pooling
+Answer >> [7_Average_Pooling.py](./7_Average_Pooling.py)
+## Q.8: Max Pooling
 
 Pool here with the maximum value instead of the average value.
 
@@ -177,9 +177,9 @@ Pool here with the maximum value instead of the average value.
 |:---:|:---:|
 |![](imori.jpg)|![](answer_8.jpg)|
 
-Answer >> answer_8.py
+Answer >> [8_Max_Pooling.py](./8_Max_Pooling.py)
 
-## Q.9. Gaussian filter
+## Q.9: Gaussian Filter
 
 Implement the Gaussian filter (3 × 3, standard deviation 1.3) and remove the noise of *imori_noise.jpg* .
 
@@ -203,9 +203,9 @@ K =  1/16 [ 2 4 2 ]
 |:---:|:---:|
 |![](imori_noise.jpg)|![](answer_9.jpg)|
 
-Answer >> answer_9.py
+Answer >> [9_Gaussian_Filter.py](./9_Gaussian_Filter.py)
 
-## Q.10Median filter
+## Q.10: Median Filter
 
 Implement the median filter (3x3) and remove the noise of *imori_noise.jpg* .
 
@@ -217,4 +217,5 @@ This is a filter that outputs a median value (median value) within the 3 × 3 re
 |:---:|:---:|
 |![](imori_noise.jpg)|![](answer_10.jpg)|
 
-Answer >> answer_10.py
+Answer >> [10_Median_Filter.py](./10_Median_Filter.py)
+

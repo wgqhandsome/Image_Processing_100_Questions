@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float)
+img = cv2.imread("./imori.jpg").astype(np.float)
 H, W, C = img.shape
 
 b = img[:, :, 0].copy()
@@ -22,12 +22,12 @@ out = np.zeros((H + pad*2, W + pad*2), dtype=np.float)
 out[pad:pad+H, pad:pad+W] = gray.copy().astype(np.float)
 tmp = out.copy()
 
-## Laplacian vertical
-K = [[0., 1., 0.],[1., -4., 1.], [0., 1., 0.]]
+## Emboss vertical
+K = [[-2., -1., 0.],[-1., 1., 1.], [0., 1., 2.]]
 
 for y in range(H):
     for x in range(W):
-        out[pad+y, pad+x] = np.mean(K * (tmp[y:y+K_size, x:x+K_size]))
+        out[pad+y, pad+x] = np.sum(K * (tmp[y:y+K_size, x:x+K_size]))
 
 out = out[pad:pad+H, pad:pad+W].astype(np.uint8)
 

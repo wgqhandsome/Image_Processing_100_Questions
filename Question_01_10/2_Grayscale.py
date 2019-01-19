@@ -9,8 +9,8 @@ b = img[:, :, 0].copy()
 g = img[:, :, 1].copy()
 r = img[:, :, 2].copy()
 
-# Gray scale
-# You could use the cv2.cvtColor() to change the image to gray scale.
+# Grayscale
+# You could use the cv2.cvtColor() to change the rgb image into grayscale.
 gray = cv2.cvtColor(img_origion, cv2.COLOR_BGR2GRAY)
 cv2.imshow("gray",gray)
 

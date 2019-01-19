@@ -10,7 +10,7 @@ The smoothing filter is a filter that outputs the average value of the pixels in
 |:---:|:---:|
 |![](imori.jpg)|![](answer_11.jpg)|
 
-Answer >> answer_11.py
+Answer >> [11_Smoothing_Filter.py](./11_Smoothing_Filter.py)
 
 
 ## Q.12. Motion Filter
@@ -29,7 +29,7 @@ The motion filter is a filter that takes the average value in the diagonal direc
 |:---:|:---:|
 |![](imori.jpg)|![](answer_12.jpg)|
 
-Answer >> answer_12.py
+Answer >> [12_Motion_Filter.py](./12_Motion_Filter.py)
 
 ## Q.13. Max-Min Filter
 
@@ -41,7 +41,7 @@ The Max-Min filter is a filter that outputs the difference between the maximum v
 |:---:|:---:|
 |![](imori.jpg)|![](answer_13.jpg)|
 
-Answer >> answer_13.py
+Answer >> [13_Max_Min_Filter.py](./13_Max_Min_Filter.py)
 
 
 ## Q.14. Differential Filter
@@ -61,7 +61,7 @@ K = [ 0  1  0 ]               K = [ -1 1 0 ]
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_14_v.jpg)|![](answer_14_h.jpg)|
 
-Answer >> answer_14.py
+Answer >> [14_Differential_Filter.py](./14_Differential_Filter.py)
 
 ## Q.15. Sobel Filter
 
@@ -70,7 +70,7 @@ Answer >> answer_14.py
 The Sobel filter (Sobel filter) is a filter that extracts only edges in a specific direction (vertical and horizontal), and is defined by the following equation.
 
 ```bash
-(a)Vertical Direction      (b)Horizontal Direction
+(a)Horizontal Direction      (b)Vertical Direction
       1 0 -1                         1  2  1
 K = [ 2 0 -2 ]                K = [  0  0  0 ]
       1 0 -1                        -1 -2 -1
@@ -80,7 +80,7 @@ K = [ 2 0 -2 ]                K = [  0  0  0 ]
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_15_v.jpg)|![](answer_15_h.jpg)|
 
-Answer >> answer_15.py
+Answer >> [15_Sobel_Filter.py](./15_Sobel_Filter.py)
 
 ## Q.16.  Prewitt Filter
 
@@ -99,7 +99,7 @@ K = [  0  0  0 ]              K = [ -1 0 1 ]
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_16_v.jpg)|![](answer_16_h.jpg)|
 
-Answer >> answer_16.py
+Answer >> [16_Prewitt_Filter.py](./16_Prewitt_Filter.py)
 
 
 ## Q.17. Laplacian Filter
@@ -143,7 +143,7 @@ K = [ 1 -4  1 ]
 |:---:|:---:|
 |![](imori.jpg)|![](answer_17.jpg)|
 
-Answer >> answer_17.py
+Answer >> [17_Laplacian_Filter.py](./17_Laplacian_Filter.py)
 
 ## Q.18. Emboss Filter
 
@@ -161,7 +161,7 @@ K = [ -1  1  1 ]
 |:---:|:---:|
 |![](imori.jpg)|![](answer_18.jpg)|
 
-Answer >> answer_17.py
+Answer >> [18_Emboss_Filter.py](./18_Emboss_Filter.py)
 
 ## Q.19. LoG Filter
 
@@ -181,7 +181,7 @@ LoG(x,y) = (x^2 + y^2 - s^2) / (2 * pi * s^6) * exp(-(x^2+y^2) / (2*s^2))
 |:---:|:---:|
 |![](imori.jpg)|![](answer_19.jpg)|
 
-Answer >> answer_20.py
+Answer >> [19_LoG_Filter.py](./19_LoG_Filter.py)
 ## Q.20. Histogram Display
 
 ### Detail: Use matplotlib to display the histogram of *imori_dark.jpg* .
@@ -192,5 +192,5 @@ A histogram is a graph of the appearance frequency of pixels. In matplotlib, the
 |:---:|:---:|
 |![](imori_dark.jpg)|![](answer_20.png)|
 
-Answer >> answer_20.py
+Answer >> [20_Histogram_Display.py](./20_Histogram_Display.py)
 
