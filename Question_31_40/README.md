@@ -1,21 +1,18 @@
 # Q. 31 - 40
 
-## Q.31. アフィン変換(スキュー)
+## Q.31. Affine Transformation (Skew)
 
-(1)アフィン変換を用いて、出力(1)のようなX-sharing(dx = 30)画像を作成せよ。
+1. Create an X-sharing (dx = 30) image like output (1) by using affine transformation.
+2. Create a Y-sharing (dy = 30) image such as output (2) by using affine transformation.
+3. Create a geometrically transformed (dx = 30, dy = 30) image such as output (3) by using affine transformation.
 
-(2)アフィン変換を用いて、出力2のようなY-sharing(dy = 30)画像を作成せよ。
+Such an image is called a skewed image and is obtained by extending an image in an oblique direction.
 
-(3)アフィン変換を用いて、出力3のような幾何変換した(dx = 30, dy = 30)画像を作成せよ。
+In the case of output (1), the image stretched by dx in the x direction is called X-sharing.
 
-このような画像はスキュー画像と呼ばれ、画像を斜め方向に伸ばした画像である。
+In the case of output (2), the image stretched by dy in the y direction is called Y-sharing.
 
-出力(1)の場合、x方向にdxだけ引き伸ばした画像はX-sharingと呼ばれる。
-
-出力(2)の場合、y方向にdyだけ引き伸ばした画像はY-sharingと呼ばれる。
-
-それぞれ次式のアフィン変換で実現できる。
-ただし、元画像のサイズがh x wとする。
+It an be realized by affine transformation of the following formulas. However, it is assumed that the size of the original image is h, x, w.
 
 ```bash
 (1) X-sharing                  (2) Y-sharing
@@ -26,85 +23,93 @@
   1        0 0  1    1           1        0 0  1    1
 ```
 
-|入力 (imori.jpg)|出力 (1) (answer_31_1.jpg)|出力 (2) (answer_31_2.jpg)|出力 (3) (answer_31_3.jpg)|
+|Input (imori.jpg)|Output (1) (answer_31_1.jpg)|Output (2) (answer_31_2.jpg)|Output (3) (answer_31_3.jpg)|
 |:---:|:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_31_1.jpg)|![](answer_31_2.jpg)|![](answer_31_3.jpg)|
 
-答え >> answer_31.py
+answer >> [31_Affine_Transformation(Skew).py](./31_Affine_Transformation(Skew).py)
 
-## Q.32. フーリエ変換
+## Q.32. Fourier Transform
 
-二次元離散フーリエ変換(DFT)を実装し、*imori.jpg*をグレースケール化したものの周波数のパワースペクトルを表示せよ。
-また、逆二次元離散フーリエ変換(IDFT)で画像を復元せよ。
+Implement two-dimensional Discrete Fourier Transform (DFT) and display the power spectrum of the frequency of *imori.jpg* grayscale. 
 
-二次元離散フーリエ変換(DFT: Discrete Fourier Transformation)とはフーリエ変換の画像に対する処理方法である。
+Then restore the image with two-dimensional Inverse Discrete Fourier transform (IDFT).
 
-通常のフーリエ変換はアナログ信号や音声などの連続値かつ一次元を対象に周波数成分を求める計算処理である。
+The two-dimensional Discrete Fourier transform (DFT) is a processing method for Fourier transform of an image.
 
-一方、ディジタル画像は[0,255]の離散値をとり、かつ画像はHxWの二次元表示であるので、二次元離散フーリエ変換が行われる。
+Usuaslly the  Fourier transform is a calculation process for obtaining a frequency component of a one-dimensional object with continuous value such as an analog signal or voice.
 
-二次元離散フーリエ変換(DFT)は次式で計算される。
+The two-dimensional Discrete Fourier transform (DFT) is calculated by the following equation.
 
 ```bash
-K = 0:W, l = 0:H, 入力画像をI として
+K = 0:W, l = 0:H, input image as I
 G(k,l) = Sum_{y=0:H-1, x=0:W-1} I(x,y) exp( -2pi * j * (kx/W + ly/H)) / sqrt(H * W)
 ```
 
-ここでは画像をグレースケール化してから二次元離散フーリエ変換を行え。
+Here you can grayscale the image and then perform two-dimensional Discrete Fourier transform.
 
-パワースペクトルとは Gは複素数で表されるので、Gの絶対値を求めることである。
-今回のみ画像表示の時はパワースペクトルは[0,255]にスケーリングせよ。
+The power spectrum is to find the absolute value of G since G is represented by a complex number. 
 
-逆二次元離散フーリエ変換(IDFT: Inverse DFT)とは周波数成分Gから元の画像を復元する手法であり、次式で定義される。
+Scale the power spectrum to [0, 255] when displaying images only this time.
+
+The two-dimensional  Inverse Discrete Fourier transform (IDFT) is a method of restoring the original image from the frequency component G and is defined by the following equation.
 
 ```bash
-x = 0:W, y = 0:H  として
+x = 0:W, y = 0:H  
 I(x,y) = Sum_{l=0:H-1, k=0:W-1} G(k,l) exp( 2pi * j * (kx/W + ly/H)) / sqrt(H * W)
 ```
 
-|入力 (imori.jpg)|グレースケール (imori_gray.jpg)|出力 (answer_32.jpg)|パワースペクトル (answer_32_ps.py)
-|:---:|:---:|:---:|:---:|
-|![](imori.jpg)|![](imori_gray.jpg)|![](answer_32.jpg)|![](answer_32_ps.jpg)|
+| Input (imori.jpg) | Grayscale (imori_gray.jpg) | Output (answer_32.jpg) | Power spectrum (answer_32_ps.py) |
+| :---------------: | :------------------------: | :--------------------: | :------------------------------: |
+|  ![](imori.jpg)   |    ![](imori_gray.jpg)     |   ![](answer_32.jpg)   |      ![](answer_32_ps.jpg)       |
 
+answer >> [32_Fourier_Transform.py](./32_Fourier_Transform.py)
 
-## Q.33. フーリエ変換　ローパスフィルタ
+## Q.33. Fourier Transform and Low Pass Filter
 
-*imori.jpg*をグレースケール化したものをDFTし、ローパスフィルタを通してIDFTで画像を復元せよ。
+Use DFT for *imori.jpg* grayscale, and then restore the image using IDFT through a low pass filter.
 
-DFTによって得られた周波数成分は左上、右上、左下、右下に近いほど低周波数の成分を含んでいることになり、中心に近いほど高周波成分を示す。
+Frequency components obtained by DFT include lower frequency components as they are closer to the upper left, upper right, lower left, and the higher frequency components as they are closer to the center.
 
-画像における高周波成分とは色が変わっている部分（ノイズや輪郭など）を示し、低周波成分とは色があまり変わっていない部分（夕日のグラデーションなど）を表す。
-ここでは、高周波成分をカットし、低周波成分のみを通す**ローパスフィルタ**を実装せよ。
+The high frequency component in the image indicates a portion where the color is changed (noise, outline, etc.), and the low frequency component indicates the portion where the color has not changed much (such as the gradation of the sunset).
 
-ここでは低周波数の中心から高周波までの距離をrとすると0.5rまでの成分を通すとする。
+In this case, implement a **low pass filter** that cuts high frequency components and only passes low frequency components .
 
-|入力 (imori.jpg)|グレースケール (imori_gray.jpg)|出力 (answer_33.jpg)|
+Here, if the distance from the center of the low frequency to the high frequency is r, components less than 0.5r are passed.
+
+|Iuput (imori.jpg)|Grayscale (imori_gray.jpg)|Output (answer_33.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](imori_gray.jpg)|![](answer_33.jpg)|
 
-## Q.34. フーリエ変換　ハイパスフィルタ
+answer >> [33_Fourier_Transform_and_Low_Pass_Filter.py](./33_Fourier_Transform_and_Low_Pass_Filter.py)
 
-*imori.jpg*をグレースケール化したものをDFTし、ハイパスフィルタを通してIDFTで画像を復元せよ。
+## Q.34. Fourier Transform and High Pass Filter
 
-ここでは、低周波成分をカットし、高周波成分のみを通す**ハイパスフィルタ**を実装せよ。
+Use DFT for *imori.jpg* grayscale, and then restore the image using IDFT through a high pass filter.
 
-ここでは低周波数の中心から高周波までの距離をrとすると0.2rからの成分を通すとする。
+In this case, implement a **high-pass filter** that cuts low frequency components and only passes high frequency components .
 
-|入力 (imori.jpg)|グレースケール (imori_gray.jpg)|出力 (answer_34.jpg)|
+Here, if the distance from the center of the low frequency to the high frequency is r, components greater than 0.2r are passed.
+
+|Input (imori.jpg)|Grayscale (imori_gray.jpg)|Output (answer_34.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](imori_gray.jpg)|![](answer_34.jpg)|
 
-## Q.35. フーリエ変換　バンドパスフィルタ
+answer >> [34_Fourier_Transform_and_High_Pass_Filter.py](./34_Fourier_Transform_and_High_Pass_Filter.py)
 
-*imori.jpg*をグレースケール化したものをDFTし、ハイパスフィルタを通してIDFTで画像を復元せよ。
+## Q.35. Fourier Transform and Band Pass Filter
 
-ここでは、低周波成分と高周波成分の中間の周波数成分のみを通す**ハイパスフィルタ**を実装せよ。
+Use DFT for *imori.jpg* grayscale, and then restore the image using IDFT through a band pass filter.
 
-ここでは低周波数の中心から高周波までの距離をrとすると0.1rから0.5rまでの成分を通すとする。
+In this case, implement a **band pass filter** that only passes intermediate frequency components between low-frequency and high-frequency components .
 
-|入力 (imori.jpg)|グレースケール (imori_gray.jpg)|出力 (answer_35.jpg)|
+Here, if the distance from the center of the low frequency to the high frequency is r, components from 0.1r to 0.5r are passed.
+
+|Input (imori.jpg)|Grayscale (imori_gray.jpg)|Output (answer_35.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](imori_gray.jpg)|![](answer_35.jpg)|
+
+answer >> [35_Fourier_Transform_and_Band_Pass_Filter.py](./35_Fourier_Transform_and_Band_Pass_Filter.py)
 
 ## Q.36. JPEG圧縮 (Step.1)離散コサイン変換
 
