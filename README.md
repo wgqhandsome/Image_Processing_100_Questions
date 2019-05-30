@@ -117,13 +117,13 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 21 - 30](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_21_30)
 
-| Number |            Question            | Number |              Question               |
-| :----: | :----------------------------: | :----: | :---------------------------------: |
-|   21   |    Histogram normalization     |   26   |       Bi-linear interpolation       |
-|   22   |      Histogram operation       |   27   |       Bi-cubic interpolation        |
-|   23   |      Histogram flattening      |   28   | Affine transformation (translation) |
-|   34   |        Gamma correction        |   29   |   Affine transformation (scaling)   |
-|   25   | Nearest neighbor interpolation |   30   |  Affine transformation (rotation)   |
+| Number |                           Question                           | Number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   21   | [Histogram Normalization](./Question_21_30/21_Histogram_Normalization.py) |   26   | [Bi-linear Interpolation](./Question_21_30/26_Bi-linear_Interpolation.py) |
+|   22   | [Histogram Operation](./Question_21_30/22_Histogram_Operation.py) |   27   | [Bi-cubic Interpolation](./Question_21_30/27_Bi-cubic_Interpolation.py) |
+|   23   | [Histogram Equalization](./Question_21_30/23_Histogram_Equalization.py) |   28   |             Affine transformation (translation)              |
+|   34   | [Gamma Correction](./Question_21_30/24_Gamma_Correction.py)  |   29   |               Affine transformation (scaling)                |
+|   25   | [Nearest Neighbor Interpolation](./Question_21_30/25_Nearest_Neighbor_Interpolation.py) |   30   |               Affine transformation (rotation)               |
 
 ## [Question 31 - 40](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_31_40)
 

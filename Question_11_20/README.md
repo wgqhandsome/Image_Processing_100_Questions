@@ -15,7 +15,7 @@ Answer >> [11_Smoothing_Filter.py](./11_Smoothing_Filter.py)
 
 ## Q.12. Motion Filter
 
-### Details: Implement the motion filter (3 x 3).
+### Detail: Implement the motion filter (3 x 3).
 
 The motion filter is a filter that takes the average value in the diagonal direction and is defined by the following equation.
 
@@ -33,7 +33,7 @@ Answer >> [12_Motion_Filter.py](./12_Motion_Filter.py)
 
 ## Q.13. Max-Min Filter
 
-Implement the Max-Min filter (3 x 3).
+### Detail：Implement the Max-Min filter (3 x 3).
 
 The Max-Min filter is a filter that outputs the difference between the maximum value and the minimum value of pixels in the filter, and is one of the filters for **edge detection** . Edge detection is to detect a line in an image, and an operation to extract information in such an image is called **feature extraction** . For edge detection, filtering is performed on grayscale images in many cases.
 
@@ -104,7 +104,7 @@ Answer >> [16_Prewitt_Filter.py](./16_Prewitt_Filter.py)
 
 ## Q.17. Laplacian Filter
 
-Implement the Laplacian filter.
+### Detail：Implement the Laplacian filter.
 
 The Laplacian (Laplacian) filter is a filter that performs edge detection by taking the second derivative of luminance.
 

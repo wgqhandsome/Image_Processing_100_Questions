@@ -1,84 +1,84 @@
 # Q. 21 - 30
 
 
-## Q.21. ヒストグラム正規化
+## Q.21. Histogram Normalization
 
-ヒストグラム正規化を実装せよ。
+### Detail：Implement histogram normalization.
 
-ヒストグラムは偏りを持っていることが伺える。
-例えば、0に近い画素が多ければ画像は全体的に暗く、255に近い画素が多ければ画像は明るくなる。
-ヒストグラムが局所的に偏っていることを**ダイナミックレンジが狭い**などと表現する。
-そのため画像を人の目に見やすくするために、ヒストグラムを正規化したり平坦化したりなどの処理が必要である。
+It can be seen that the histogram has a bias. For example, if there are many pixels close to 0, the image will be dark overall, and if there are many pixels close to 255, the image will be bright. The local bias of the histogram is expressed as a **narrow dynamic range** . Therefore, processing such as normalization and flattening of the histogram is necessary to make the image easy to be viewed by the human eye.
 
-このヒストグラム正規化は**濃度階調変換(glay-scale transformation)** と呼ばれ、[c,d]の画素値を持つ画像を[a,b]のレンジに変換する場合は次式で実現できる。
-今回は*imori_dark.jpg*を[0, 255]のレンジにそれぞれ変換する。
+This histogram normalization is called **gray-scale transformation,** and can be realized by the following equation when converting an image having pixel values of [c, d] into a range of [a, b]. This time, *imori_dark.jpg* is converted to the range of [0, 255] respectively.
 
 ```bash
-xout = {  a                         (xin < c)
+xout = { 
+          a                         (xin < c)
          (b-a)/(d-c) * (xin-c) + a  (c <= xin <= d)
           b                         (d < xin)
+        }
 ```
 
-|入力 (imori_dark.jpg)|出力 (answer_21_1.jpg) |ヒストグラム(answer_21_2.png)|
+|Input (imori_dark.jpg)|Output (answer_21_1.jpg) |Histogram (answer_21_2.png)|
 |:---:|:---:|:---:|
 |![](imori_dark.jpg)|![](answer_21_1.jpg)|![](answer_21_2.png)|
 
-答え >> answer_21.py
+Answer >> [21_Histogram_Normalization.py](./21_Histogram_Normalization.py)
 
-## Q.22. ヒストグラム操作
+## Q.22. Histogram Operation
 
-ヒストグラムの平均値をm0=128、標準偏差をs0=52になるように操作せよ。
+Operate the mean value of the histogram so that $m_0$ = 128 and the standard deviation $s_0$ = 52.
 
-これはヒストグラムのダイナミックレンジを変更するのではなく、ヒストグラムを平坦に変更する操作である。
-
-平均値m、標準偏差s、のヒストグラムを平均値m0, 標準偏差s0に変更するには、次式によって変換する。
+This is not a change in the dynamic range of the histogram but an operation to change the histogram to be flat. To achieve this, the conversion is performed according to the following equation.
 
 ```bash
-xout = s0 / s * (xin - m) + m0
+xout = s0/s s * (xin - m) + m0
 ```
 
-|入力 (imori.jpg)|出力 (answer_22_1.jpg) |ヒストグラム(answer_22_2.png)|
+|Input (imori.jpg)|Output (answer_22_1.jpg) |Histogram (answer_22_2.png)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_22_1.jpg)|![](answer_22_2.png)|
 
-答え >> answer_22.py
+Answer >>[22_Histogram_Operation.py](./22_Histogram_Operation.py)
 
-## Q.23. ヒストグラム平坦化
+## Q.23. Histogram Equalization
 
-ヒストグラム平坦化を実装せよ。
+### Detail: Implement histogram flattening.
 
-ヒストグラム平坦化とはヒストグラムを平坦に変更する操作であり、上記の平均値や標準偏差などを必要とせず、ヒストグラム値を均衡にする操作である。
+Histogram flattening is an operation for changing the histogram to be flat, and is an operation for balancing the histogram values without requiring the above-mentioned average value or standard deviation.
 
-これは次式で定義される。
-ただし、S ... 画素値の総数、Zmax ... 画素値の最大値、h(z) ... 濃度zの度数
+This is defined by the following equation. 
+
+- S: total number of pixel values
+- Zmax: maximum value of pixel values
+- h (z): frequency of density z
 
 ```bash
 Z' = Zmax / S * Sum{i=0:z} h(z)
 ```
 
-|入力 (imori.jpg)|出力 (answer_23_1.jpg) |ヒストグラム(answer_23_2.png)|
+|Input (imori.jpg)|Output (answer_23_1.jpg) |Histogram (answer_23_2.png)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_23_1.jpg)|![](answer_23_2.png)|
 
-答え >> answer_23.py
+Answer >> [23_Histogram_Equalization.py](./23_Histogram_Equalization.py)
 
 
-## Q.24. ガンマ補正
+## Q.24. Gamma Correction
 
-*imori_gamma.jpg*に対してガンマ補正(c=1, g=2.2)を実行せよ。
+### Detail: *Perform* gamma correction (c = 1, g = 2.2) on *imori_gamma.jpg* .
 
-ガンマ補正とは、カメラなどの媒体の経由によって画素値が非線形的に変換された場合の補正である。
-ディスプレイなどで画像をそのまま表示すると画面が暗くなってしまうため、RGBの値を予め大きくすることで、ディスプレイの特性を排除した画像表示を行うことがガンマ補正の目的である。
+Gamma correction is correction when pixel values are converted non-linearly via a device such as a camera. When an image is displayed as it is on a display or the like, the screen becomes dark. **Therefore, it is an object of gamma correction to perform image display excluding the characteristics of the display by increasing the values of RGB in advance.**
 
-非線形変換は次式で起こるとされる。
-ただしxは[0,1]に正規化されている。
-c ... 定数、g ... ガンマ特性(通常は2.2)
+The non-linear transformation is shown in the following equation. 
+
+- x: is normalized to [0, 1]. 
+- c: constant
+- g: gamma characteristic (usually 2.2)
 
 ```bash
 x' = c * Iin ^ g
 ```
 
-そこで、ガンマ補正は次式で行われる。
+Therefore, gamma correction is performed by the following equation.
 
 ```bash
 Iout = (1/c * Iin) ^ (1/g)
@@ -86,41 +86,43 @@ Iout = (1/c * Iin) ^ (1/g)
 
 ![](question_24_1.jpg) ![](question_24_2.jpg)
 
-|入力 (imori_gamma.jpg)|出力 (answer_24.jpg)|
+|Input (imori_gamma.jpg)|Output (answer_24.jpg)|
 |:---:|:---:|
 |![](imori_gamma.jpg)|![](answer_24.jpg)|
 
-答え >> answer_24.py
+Answer >> [24_Gamma_Correction.py](./24_Gamma_Correction.py)
 
 
-## Q.25. 最近傍補間
+## Q.25. Nearest Neighbor Interpolation
 
-最近傍補間により画像を1.5倍に拡大せよ。
+### Detail: Enlarge the image 1.5 times by nearest neighbor interpolation.
 
-最近傍補間(Nearest Neighbor)は画像の拡大時に最近傍にある画素をそのまま使う手法である。
-シンプルで処理速度が速いが、画質の劣化は著しい。
+Nearest neighbor interpolation is a method of using the nearest pixel as it is when enlarging an image. Simple and fast processing speed, but the image quality is significantly degraded.
 
-次式で補間される。
-I' ... 拡大後の画像、 I ... 拡大前の画像、a ... 拡大率、[ ] ... 四捨五入
+Interpolated by the following equation. 
+
+- I ': the image after enlargement,
+- I: the image before enlargement
+- a: the magnification
+- []: rounding off
 
 ```bash
 I'(x,y) = I([x/a], [y/a])
 ```
-|入力 (imori.jpg)|出力 (answer_25.jpg)|
+|Input (imori.jpg)|Output (answer_25.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_25.jpg)|
 
-答え >> answer_25.py
+Answer >> [25_Nearest_Neighbor_Interpolation.py](./25_Nearest_Neighbor_Interpolation.py)
 
-## Q.26. Bi-linear補間
+## Q.26. Bi-linear Interpolation
 
-Bi-linear補間により画像を1.5倍に拡大せよ。
+### Detail：Enlarge the image 1.5 times with Bi-linear interpolation.
 
-Bi-linear補間とは周辺の４画素に距離に応じた重みをつけることで補完する手法である。
-計算量が多いだけ処理時間がかかるが、画質の劣化を抑えることができる。
+Bi-linear interpolation is a method of complementing by weighting the four surrounding pixels according to the distance. Although the processing time is increased as the amount of calculation is large, deterioration of the image quality can be suppressed.
 
-1. 拡大画像の座標(x', y')を拡大率aで割り、floor(x'/a, y'/a)を求める。
-2. 元画像の(x'/a, y'/a)の周囲4画素、I(x,y), I(x+1,y), I(x,y+1), I(x+1, y+1)を求める
+1. The coordinates (x’, y’ ) of the magnified image are divided by the magnification ratio a to obtain floor (x '/ a, y' / a).
+2. Four pixels around (x '/ a, y' / a) of the original image, I (x, y), I (x + 1, y), I (x, y + 1), I (x + 1, y + 1)
 
 ```bash
 I(x,y)    I(x+1,y) 
@@ -128,24 +130,23 @@ I(x,y)    I(x+1,y)
 I(x,y+1)  I(x+1,y+1)
 ```
 
-3. それぞれの画素と(x'/a, y'/a)との距離dを求め、重み付けする。 w = d / Sum d
-4. 次式によって拡大画像の画素(x',y')を求める。 
-dx = x'/a - x , dy = y'/a - y
+3. The distance d between each pixel and (x '/ a, y' / a) is determined and weighted. w = d / Sum d
+4. The pixel (x ′, y ′) of the enlarged image is determined by the following equation. dx = x '/ a-x, dy = y' / a-y
 ```bash
 I'(x',y') = (1-dx)(1-dy)I(x,y) + dx(1-dy)I(x+1,y) + (1-dx)dyI(x,y+1) + dxdyI(x+1,y+1)
 ```
 
-|入力 (imori.jpg)|出力 (answer_26.jpg)|
+|Input (imori.jpg)|Output (answer_26.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_26.jpg)|
 
-答え >> answer_26.py
+Answer >> [26_Bi-linear_Interpolation.py](./26_Bi-linear_Interpolation.py)
 
-## Q.27. Bi-cubic補間
+## Q.27. Bi-cubic Interpolation
 
-Bi-cubic補間により画像を1.5倍に拡大せよ。
+### Detail: Enlarge the image 1.5 times by Bi-cubic interpolation.
 
-Bi-cubic補間とはBi-linear補間の拡張であり、周辺の16画素から補間を行う。
+Bi-cubic interpolation is an extension of Bi-linear interpolation, and performs interpolation from surrounding 16 pixels.
 
 ```bash
 I(x-1,y-1)  I(x,y-1)  I(x+1,y-1)  I(x+2,y-1)
@@ -154,15 +155,14 @@ I(x-1,y+1)  I(x,y+1)  I(x+1,y+1)  I(x+2,y+1)
 I(x-1,y+2)  I(x,y+2)  I(x+1,y+2)  I(x+2,y+2)
 ```
 
-それぞれの画素との距離は次式の様に決定される。
+The distance to each pixel is determined as in the following equation.
 
 ```bash
 dx1 = x'/a - (x-1) , dx2 = x'/a - x , dx3 = (x+1) - x'/a , dx2 = (x+2) - x'/a
 dy1 = y'/a - (y-1) , dy2 = y'/a - y , dy3 = (y+1) - y'/a , dy2 = (y+2) - y'/a
 ```
 
-重みは距離によって次の関数により決定される。
-a は多くの場合-1となる。
+The weight is determined by the distance according to the following function: a is often -1.
 
 ```bash
 h(t) = { (a+2)|t|^3 - (a+3)|t|^2 + 1    (when |t|<=1)
@@ -170,18 +170,17 @@ h(t) = { (a+2)|t|^3 - (a+3)|t|^2 + 1    (when |t|<=1)
          0                              (when 2<|t|) 
 ```
 
-これら画素と重みを用いて、次式で拡大画像の画素が計算される。
-それぞれの画素と重みを掛けた和を重みの和で割る。
+Using these pixels and weights, the pixels of the enlarged image are calculated by the following equation. The sum of each pixel multiplied by the weight is divided by the sum of the weights.
 
 ```bash
 I'(x', y') = (Sum{i=-1:2}{j=-1:2} I(x+i,y+j) * wxi * wyj) / Sum{i=-1:2}{j=-1:2} wxi * wyj
 ```
 
-|入力 (imori.jpg)|出力 (answer_27.jpg)|
+|Input (imori.jpg)|Output (answer_27.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_27.jpg)|
 
-答え >> answer_27.py
+Answer >>[27_Bi-cubic_Interpolation.py](./27_Bi-cubic_Interpolation.py)
 
 ## Q.28. アフィン変換(平行移動)
 
@@ -222,11 +221,11 @@ I'(x', y') = (Sum{i=-1:2}{j=-1:2} I(x+i,y+j) * wxi * wyj) / Sum{i=-1:2}{j=-1:2} 
   1        0 0  1    1
 ```
 
-|入力 (imori.jpg)|出力 (answer_28.jpg)|
+|Input (imori.jpg)|Output (answer_28.jpg)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_28.jpg)|
 
-答え >> answer_28.py
+Answer >> answer_28.py
 
 ## Q.29. アフィン変換(拡大縮小)
 
@@ -234,11 +233,11 @@ I'(x', y') = (Sum{i=-1:2}{j=-1:2} I(x+i,y+j) * wxi * wyj) / Sum{i=-1:2}{j=-1:2} 
 
 また、(2)  (1)の条件に加えて、x方向に+30、y方向に-30だけ平行移動を同時に実現せよ。
 
-|入力 (imori.jpg)|出力 (1) (answer_29_1.jpg)|出力 (2) (answer_29_2.jpg)|
+|Input (imori.jpg)|Output (1) (answer_29_1.jpg)|Output (2) (answer_29_2.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_29_1.jpg)|![](answer_29_2.jpg)|
 
-答え >> answer_29.py
+Answer >> answer_29.py
 
 ## Q.30. アフィン変換(回転)
 
@@ -255,8 +254,8 @@ I'(x', y') = (Sum{i=-1:2}{j=-1:2} I(x+i,y+j) * wxi * wyj) / Sum{i=-1:2}{j=-1:2} 
   1         0     0    1    1
 ```
 
-|入力 (imori.jpg)|出力 (1) (answer_30_1.jpg)|出力 (2) (answer_30_2.jpg)|
+|Input (imori.jpg)|Output (1) (answer_30_1.jpg)|Output (2) (answer_30_2.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_30_1.jpg)|![](answer_30_2.jpg)|
 
-答え >> answer_30_1.py, answer_30_2.py
+Answer >> answer_30_1.py, answer_30_2.py
