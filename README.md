@@ -6,6 +6,8 @@ This is the English version of image processing 100 questions.  The [original Ja
 
 Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com/yoyoyo-yo) great effort.  
 
+I'm currently working on ROS and OpenCV, so I'm updating another repository: [OpenCV_for_Beginners](https://github.com/KuKuXia/OpenCV_for_Beginners). Please feel free to fork and pull request.
+
 ## Before Reading
 
 1. I’ll use the Google translator to help me understand his original meaning. Pretty cool, right? It’s the time for NLP.
