@@ -76,7 +76,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 - [x] Question 1 - 10   >> Question_01_10
 - [x] Question 11 - 20 >> Question_ 11 _ 20
-- [ ] Question 21 - 30 >> Question_ 21 _ 30
+- [x] Question 21 - 30 >> Question_ 21 _ 30
 - [ ] Question 31 - 40 >> Question_ 31 _ 40
 - [ ] Question 41 - 50 >> Question_ 41 _ 50
 - [ ] Question 51 - 60 >> Question_ 51 _ 60
