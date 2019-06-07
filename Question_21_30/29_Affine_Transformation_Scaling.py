@@ -1,11 +1,11 @@
+# Import the packages
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Read image
+# Read the image
 _img = cv2.imread("imori.jpg").astype(np.float32)
 H, W, C = _img.shape
-
 
 # Affine
 a = 1.3
@@ -26,7 +26,7 @@ x_new = np.tile(np.arange(W_new), (H_new, 1))
 y_new = np.arange(H_new).repeat(W_new).reshape(H_new, -1)
 
 adbc = a * d - b * c
-x = np.round((d * x_new  - b * y_new) / adbc).astype(np.int) - tx + 1
+x = np.round((d * x_new - b * y_new) / adbc).astype(np.int) - tx + 1
 y = np.round((-c * x_new + a * y_new) / adbc).astype(np.int) - ty + 1
 
 x = np.minimum(np.maximum(x, 0), W+1).astype(np.int)

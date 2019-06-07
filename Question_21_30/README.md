@@ -182,30 +182,29 @@ I'(x', y') = (Sum{i=-1:2}{j=-1:2} I(x+i,y+j) * wxi * wyj) / Sum{i=-1:2}{j=-1:2} 
 
 Answer >>[27_Bi-cubic_Interpolation.py](./27_Bi-cubic_Interpolation.py)
 
-## Q.28. アフィン変換(平行移動)
+## Q.28.  Affine Transformation (Translation)
 
-アフィン変換を利用して画像をx方向に+30、y方向に-30だけ平行移動させよ。
+Translate the image by +30 in the x direction and -30 in the y direction using affine transformation.
 
-アフィン変換とは3x3の行列を用いて画像の変換を行う操作である。
+Affine transformation is an operation that transforms an image using a 3 × 3 matrix.
 
-変換は(1)平行移動(Q.28) (2)拡大縮小(Q.29) (3)回転(Q.30) (4)スキュー(Q.31) がある。
+The conversion is (1) translation (Q. 28) (2) scaling (Q. 29) (3) rotation (Q. 30) (4) skew (Q. 31).
 
-元画像を(x,y)、変換後の画像を(x',y')とする。
-画像の拡大縮小は、次式で表される。
+The original image is (x, y), and the converted image is (x ', y'). The scaling of the image is expressed by the following equation.
 
 ```bash
 [ x' ] = [a b][x]
   y'      c d  y
 ```
 
-一方、平行移動は次式となる。
+On the other hand, parallel movement is expressed by the following equation.
 
 ```bash
 [ x' ] = [x] + [tx]
   y'      y  +  ty
 ```
 
-以上を一つの式にまとめると、次式になり、これがアフィン変換である。
+Summarizing the above into one equation, we obtain the following equation, which is an affine transformation.
 
 ```bash
   x'       a b tx    x
@@ -213,7 +212,7 @@ Answer >>[27_Bi-cubic_Interpolation.py](./27_Bi-cubic_Interpolation.py)
   1        0 0  1    1
 ```
 
-平行移動では次式を用いる。
+The following equation is used for parallel movement.
 
 ```bash
   x'       1 0 tx    x
@@ -225,28 +224,29 @@ Answer >>[27_Bi-cubic_Interpolation.py](./27_Bi-cubic_Interpolation.py)
 |:---:|:---:|
 |![](imori.jpg)|![](answer_28.jpg)|
 
-Answer >> answer_28.py
+Answer >> [28_Affine_Transformation_Translation](./28_Affine_Transformation_Translation.py)
 
-## Q.29. アフィン変換(拡大縮小)
+## Q.29. Affine Transformation (Scaling)
 
-アフィン変換を用いて、(1)x方向に1.3倍、y方向に0.8倍にリサイズせよ。
+(1) Resize 1.3 times in x direction 
 
-また、(2)  (1)の条件に加えて、x方向に+30、y方向に-30だけ平行移動を同時に実現せよ。
+(2) 0.8 times in y direction using affine transformation.
+
+Also, in addition to the conditions of (2) and (1), simultaneously realize parallel movement of +30 in the x direction and -30 in the y direction.
 
 |Input (imori.jpg)|Output (1) (answer_29_1.jpg)|Output (2) (answer_29_2.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_29_1.jpg)|![](answer_29_2.jpg)|
 
-Answer >> answer_29.py
+Answer >> [29_Affine_Transformation_Scaling](./29_Affine_Transformation_Scaling.py)
 
-## Q.30. アフィン変換(回転)
+## Q.30. Affine Transformation (Rotation)
 
-(1)アフィン変換を用いて、反時計方向に30度回転させよ。
+(1) Rotate 30 degrees counterclockwise using affine transformation.
 
-(2) アフィン変換を用いて、反時計方向に30度回転した画像全体を見れる画像を作成せよ。
-（ただし、単純なアフィン変換を行うと画像が切れてしまうので、工夫を要する。）
+(2) Use the affine transformation to create an image that can be seen in the entire image rotated counterclockwise by 30 degrees. (However, if a simple affine transformation is performed, the image will be cut off, so some ingenuity is required.)
 
-アフィン変換において、反時計方向にA度回転させる時は、次式となる。
+In the affine transformation, when rotating counterclockwise by A degrees, the following equation is obtained.
 
 ```bash
   x'       cosA -sinA tx    x
@@ -258,4 +258,4 @@ Answer >> answer_29.py
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](answer_30_1.jpg)|![](answer_30_2.jpg)|
 
-Answer >> answer_30_1.py, answer_30_2.py
+Answer >> [30_Affine_Transformation_Rotation_1](./30_Affine_Transformation_Rotation_1.py),  [30_Affine_Transformation_Rotation_2](./30_Affine_Transformation_Rotation_2.py)
