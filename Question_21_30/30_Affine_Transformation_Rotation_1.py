@@ -1,13 +1,15 @@
+# Import the packages
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-_img = cv2.imread("imori.jpg").astype(np.float32)
+_img = cv2.imread("./imori.jpg").astype(np.float32)
 H, W, C = _img.shape
 
 
 # Affine
+
 A = 30.
 theta = - np.pi * A / 180.
 
@@ -29,19 +31,14 @@ x_new = np.tile(np.arange(W_new), (H_new, 1))
 y_new = np.arange(H_new).repeat(W_new).reshape(H_new, -1)
 
 adbc = a * d - b * c
-x = np.round((d * x_new  - b * y_new) / adbc).astype(np.int) - tx + 1
+x = np.round((d * x_new - b * y_new) / adbc).astype(np.int) - tx + 1
 y = np.round((-c * x_new + a * y_new) / adbc).astype(np.int) - ty + 1
-
-dcx = (x.max() + x.min()) // 2 - W // 2
-dcy = (y.max() + y.min()) // 2 - H // 2
-
-x -= dcx
-y -= dcy
 
 x = np.minimum(np.maximum(x, 0), W+1).astype(np.int)
 y = np.minimum(np.maximum(y, 0), H+1).astype(np.int)
 
 out[y_new, x_new] = img[y, x]
+
 out = out.astype(np.uint8)
 
 # Save result

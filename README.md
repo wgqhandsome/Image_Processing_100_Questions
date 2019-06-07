@@ -121,9 +121,9 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
 |   21   | [Histogram Normalization](./Question_21_30/21_Histogram_Normalization.py) |   26   | [Bi-linear Interpolation](./Question_21_30/26_Bi-linear_Interpolation.py) |
 |   22   | [Histogram Operation](./Question_21_30/22_Histogram_Operation.py) |   27   | [Bi-cubic Interpolation](./Question_21_30/27_Bi-cubic_Interpolation.py) |
-|   23   | [Histogram Equalization](./Question_21_30/23_Histogram_Equalization.py) |   28   |             Affine transformation (translation)              |
-|   34   | [Gamma Correction](./Question_21_30/24_Gamma_Correction.py)  |   29   |               Affine transformation (scaling)                |
-|   25   | [Nearest Neighbor Interpolation](./Question_21_30/25_Nearest_Neighbor_Interpolation.py) |   30   |               Affine transformation (rotation)               |
+|   23   | [Histogram Equalization](./Question_21_30/23_Histogram_Equalization.py) |   28   | [Affine transformation (Translation)](./28_Affine_Transformation_Translation.py) |
+|   34   | [Gamma Correction](./Question_21_30/24_Gamma_Correction.py)  |   29   | [Affine transformation (Scaling)](./Question_21_30/29_Affine_Transformation_Scaling.py) |
+|   25   | [Nearest Neighbor Interpolation](./Question_21_30/25_Nearest_Neighbor_Interpolation.py) |   30   | Affine transformation (Rotation)[v_1](./Question_21_30/30_Affine_Transformation_Rotation_1.py), [v_2](./Question_21_30/30_Affine_Transformation_Rotation_2.py) |
 
 ## [Question 31 - 40](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_31_40)
 

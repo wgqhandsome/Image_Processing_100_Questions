@@ -1,9 +1,10 @@
+# Import the packages
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Read image
-img = cv2.imread("imori.jpg").astype(np.float32)
+# Read the image
+img = cv2.imread("./imori.jpg").astype(np.float32)
 H, W, C = img.shape
 
 
