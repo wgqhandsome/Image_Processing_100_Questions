@@ -31,13 +31,14 @@ answer >> [31_Affine_Transformation(Skew).py](./31_Affine_Transformation(Skew).p
 
 ## Q.32. Fourier Transform
 
-Implement two-dimensional Discrete Fourier Transform (DFT) and display the power spectrum of the frequency of *imori.jpg* grayscale. 
+### Detail: 
 
-Then restore the image with two-dimensional Inverse Discrete Fourier transform (IDFT).
+	1. Implement two-dimensional Discrete Fourier Transform (DFT) and display the power spectrum of the frequency of *imori.jpg* grayscale. 
+ 	2. Then restore the image with two-dimensional Inverse Discrete Fourier transform (IDFT).
 
 The two-dimensional Discrete Fourier transform (DFT) is a processing method for Fourier transform of an image.
 
-Usuaslly the  Fourier transform is a calculation process for obtaining a frequency component of a one-dimensional object with continuous value such as an analog signal or voice.
+Usually the  Fourier transform is a calculation process for obtaining a frequency component of a one-dimensional object with continuous value such as an analog signal or voice.
 
 The two-dimensional Discrete Fourier transform (DFT) is calculated by the following equation.
 
@@ -111,42 +112,40 @@ Here, if the distance from the center of the low frequency to the high frequency
 
 answer >> [35_Fourier_Transform_and_Band_Pass_Filter.py](./35_Fourier_Transform_and_Band_Pass_Filter.py)
 
-## Q.36. JPEG圧縮 (Step.1)離散コサイン変換
+## Q.36. JPEG Compression (Step 1) Discrete Cosine Transform
 
-*imori.jpg*をグレースケール化し離散コサイン変換を行い、逆離散コサイン変換を行え。
+*Grayscale imori.jpg* to perform discrete cosine transform and inverse discrete cosine transform.
 
-離散コサイン変換(DCT: Discrete Cosine Transformation)とは、次式で定義される周波数変換の一つである。
+Discrete Cosine Transformation (DCT) is one of the frequency transformations defined by the following equation.
 
 ```bash
 T = 8
 F(u,v) = 1 / T * C(u)C(v) * Sum_{y=0:T-1} Sum_{x=0:T-1} f(x,y) cos((2x+1)u*pi/2T) cos((2y+1)v*pi/2T)
 ```
 
-逆離散コサイン変換(IDCT: Inverse Discrete Cosine Transformation)とは離散コサイン変換の逆（復号）であり、次式で定義される。
+Inverse Discrete Cosine Transformation (IDCT) is the inverse (decoding) of discrete cosine transform and is defined by the following equation.
 
 ```bash
 f(x,y) = 1 / T * C(x)C(y) * Sum_{u=0:T-1} Sum_{v=0:T-1} F(u,v) cos((2x+1)u*pi/2T) cos((2y+1)v*pi/2T)
 ```
 
-ここでは画像を8x8ずつの領域に分割して、各領域で以上のDCT, IDCTを繰り返すことで、jpeg符号に応用される。
-今回も同様に8x8の領域に分割して、DCT, IDCTを行え。
+Here, the image is divided into 8 × 8 areas, and the above DCT and IDCT are applied to the jpeg repeatedly in each area. 
 
-|入力 (imori.jpg)|グレースケール (imori_gray.jpg)|出力 (1) (answer_36.jpg)|
+This time, it is similarly divided into 8x8 areas, and DCT and IDCT can be performed.
+
+|Input (imori.jpg)|Grayscale (imori_gray.jpg)|Output (1) (answer_36.jpg)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](imori_gray.jpg)|![](answer_36.jpg)|
 
-答え >> answer_36.py
+answer >> [36_JPEG_Compression_1_Discrete_Cosine_Transform](./36_JPEG_Compression_1_Discrete_Cosine_Transform.py)
 
 ## Q.37. PSNR
 
-IDCTで用いるDCT係数を8でなく、4にすると画像の劣化が生じる。
-入力画像とIDCT画像のPSNRを求めよ。また、IDCTによるビットレートを求めよ。
+If the DCT coefficient used in IDCT is not 8 but 4 the image is degraded. Determine the PSNR of the input image and the IDCT image. Also find the bit rate by IDCT.
 
-PSNR(Peak Signal to Noise Ratio)とは信号対雑音比と呼ばれ、画像がどれだけ劣化したかを示す。
+The peak signal to noise ratio (PSNR) is called signal-to-noise ratio, and indicates how much the image has deteriorated.
 
-PSNRが大きいほど、画像が劣化していないことを示し、次式で定義される。
-MAXは取りうる値の最大値で[0,255]の表示なら MAX=255　となる。
-また、MSEはMean Squared Error(平均二乗誤差)と呼ばれ、二つの画像の差分の二乗の平均値を示す。
+A larger PSNR indicates that the image is not degraded and is defined by the following equation. MAX is the maximum value that can be taken. If [0, 255] is displayed, then MAX = 255. Also, MSE is called Mean Squared Error (mean squared error), and indicates the average value of the squares of differences between two images.
 
 
 ```bash
@@ -154,30 +153,27 @@ PSNR = 10 * log10(MAX^2 / MSE)
 MSE = Sum_{y=0:H-1} Sum_{x=0:W-1} (I1(x,y) - I2(x,y))^2 / (HW)
 ```
 
-ビットレートとは8x8でDCTを行い、IDCTでKxKの係数までを用いた時に次式で定義される。
+The bit rate is defined by the following equation when DCT is performed at 8 × 8 and coefficients of K × K are used in IDCT.
 
 ```bash
 bitrate = 8 * K^2 / 8^2
 ```
 
-|入力 (imori.jpg)|グレースケール|出力 (answer_37.jpg) (PSNR = 27.62, Bitrate=2.0)|
+|Input (imori.jpg)|Grayscale|Output (answer_37.jpg) (PSNR = 27.62, Bitrate=2.0)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](imori_gray.jpg)|![](answer_37.jpg)|
 
-答え >> answer_37.py
+answer >> [37_PSNR](./37_PSNR.py)
 
-## Q.38. JPEG圧縮 (Step.2)DCT+量子化|
+## Q.38. JPEG Compression (Step 2) DCT + Quantization
 
-DCT係数を量子化し、IDCTで復元せよ。また、その時の画像の容量を比べよ。
+Quantize the DCT coefficients and restore with IDCT. Also compare the capacity of the image at that time.
 
-DCT係数を量子化することはjpeg画像にする符号化で用いられる手法である。
+Quantizing DCT coefficients is a method used in coding to make a jpeg image.
 
-量子化とは、値を予め決定された区分毎に値を大まかに丸め込む作業であり、floorやceil, roundなどが似た計算である。
+Quantization is an operation of roughly rounding a value into predetermined sections, and is a calculation similar to floor, ceil, round and the like.
 
-JPEG画像ではDCT係数を下記で表される量子化テーブルに則って量子化する。
-この量子化テーブルはjpeg団体の仕様書から取った。
-量子化では8x8の係数をQで割り、四捨五入する。その後Qを掛けることで行われる。
-IDCTでは係数は全て用いるものとする。
+In a JPEG image, DCT coefficients are quantized according to a quantization table represented below. This quantization table was taken from the specifications of the jpeg group. In quantization, divide the 8x8 coefficient by Q and round off. It is then done by multiplying Q. All coefficients are used in IDCT.
 
 ```bash
 Q = np.array(((16, 11, 10, 16, 24, 40, 51, 61),
@@ -190,23 +186,23 @@ Q = np.array(((16, 11, 10, 16, 24, 40, 51, 61),
               (72, 92, 95, 98, 112, 100, 103, 99)), dtype=np.float32)
 ```
 
-量子化を行うと画像の容量が減っていることから、データ量が削減されたことが伺える。
+It can be seen that the amount of data has been reduced because quantization reduces the image capacity.
 
-|入力 (imori.jpg)|グレースケール(9kb)|出力 (answer_38.jpg) (7kb)|
+|Input (imori.jpg)|Grayscale(9kb)|Output (answer_38.jpg) (7kb)|
 |:---:|:---:|:---:|
 |![](imori.jpg)|![](imori_gray.jpg)|![](answer_38.jpg)|
 
-答え >> answer_38.py
+answer >> [38_JPEG_Compression_2_DCT_Quantization](./38_JPEG_Compression_2_DCT_Quantization.py)
 
-## Q.39. JPEG圧縮 (Step.3)YCbCr表色系
+## Q.39.  JPEG compression (Step. 3) YCbCr Color Space
 
-YCbCr表色形において、Yを0.7倍してコントラストを暗くせよ。
+In the YCbCr color apace, darken the contrast by multiplying Y by 0.7.
 
-YCbCr表色系とは、画像を明るさを表すY、輝度と青レベルの差Cb、輝度と赤レベルの差Crに分解する表現方法である。
+The YCbCr color system is an expression method of decomposing an image into Y representing brightness, a difference Cb between brightness and blue level, and a difference Cr between brightness and red level.
 
-これはJPEG変換で用いられる。
+This is used in JPEG conversion.
 
-RGBからYCbCrへの変換は次式。
+The conversion from RGB to YCbCr is as follows.
 
 ```bash
 Y = 0.299 * R + 0.5870 * G + 0.114 * B
@@ -214,7 +210,7 @@ Cb = -0.1687 * R - 0.3313 * G + 0.5 * B + 128
 Cr = 0.5 * R - 0.4187 * G - 0.0813 * B + 128
 ```
 
-YCbCrからRGBへの変換は次式。
+The conversion from YCbCr to RGB is as follows.
 
 ```bash
 R = Y + (Cr - 128) * 1.402
@@ -222,18 +218,17 @@ G = Y - (Cb - 128) * 0.3441 - (Cr - 128) * 0.7139
 B = Y + (Cb - 128) * 1.7718
 ```
 
-|入力 (imori.jpg)|出力 (answer_39.jpg) |
+|Input (imori.jpg)|Output (answer_39.jpg) |
 |:---:|:---:|
 |![](imori.jpg)|![](answer_39.jpg)|
 
-答え >> answer_39.py
+answer >> [39_JPEG_Compression_3_YCbCr_Color_Space](./39_JPEG_Compression_3_YCbCr_Color_Space.py)
 
-## Q.40. JPEG圧縮 (Step.4)YCbCr+DCT+量子化
+## Q.40. JPEG compression (Step. 4) YCbCr + DCT + Quantization
 
-YCbCr表色系にし、DCT後、Yを量子化テーブルQ1、CbとCrをQ2で量子化し、IDCTで画像を復元せよ。
-また、画像の容量を比較せよ。
+In YCbCr color space, after DCT, quantize Y with quantization table Q1, Cb and Cr with Q2, and restore the image with IDCT. Also compare the capacity of the images.
 
-これはJPEGで実際に使われるデータ量削減の手法であり、Q1,Q2はJPEGの仕様書に則って次式で定義される。
+This is a method for reducing the amount of data actually used in JPEG, and Q1 and Q2 are defined by the following equations in accordance with the JPEG specification.
 
 ```bash
 Q1 = np.array(((16, 11, 10, 16, 24, 40, 51, 61),
@@ -255,9 +250,9 @@ Q2 = np.array(((17, 18, 24, 47, 99, 99, 99, 99),
                (99, 99, 99, 99, 99, 99, 99, 99)), dtype=np.float32)
 ```
 
-|入力 (imori.jpg) (13kb)|出力 (answer_40.jpg) (8kb)|
+|Input (imori.jpg) (13kb)|Output (answer_40.jpg) (8kb)|
 |:---:|:---:|
 |![](imori.jpg)|![](answer_40.jpg)|
 
-答え >> answer_40.py
+answer >>  [40_JPEG_compression_4_YCbCr_DCT_Quantization](./40_JPEG_compression_4_YCbCr_DCT_Quantization.py)
 

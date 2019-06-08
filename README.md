@@ -77,7 +77,7 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 - [x] Question 1 - 10   >> Question_01_10
 - [x] Question 11 - 20 >> Question_ 11 _ 20
 - [x] Question 21 - 30 >> Question_ 21 _ 30
-- [ ] Question 31 - 40 >> Question_ 31 _ 40
+- [x] Question 31 - 40 >> Question_ 31 _ 40
 - [ ] Question 41 - 50 >> Question_ 41 _ 50
 - [ ] Question 51 - 60 >> Question_ 51 _ 60
 - [ ] Question 61 - 70 >> Question_ 61 _ 70
@@ -127,13 +127,13 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 ## [Question 31 - 40](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_31_40)
 
-|     Number     |              Question              | Number |                          Question                          |
-| :------------: | :--------------------------------: | :----: | :--------------------------------------------------------: |
-|       31       |    Affine transformation (skew)    |   36   |    JPEG compression (Step 1) Discrete cosine transform     |
-| 32 **not yet** |         Fourier transform          |   37   |                            PSNR                            |
-| 33 **not yet** | Fourier transform low pass filter  |   38   |        JPEG compression (Step 2) DCT + quantization        |
-| 34 **not yet** | Fourier transform high pass filter |   39   | JPEG compression (Step 3) YCbCr color specification system |
-| 35 **not yet** | Fourier transform band pass filter |   40   |    JPEG compression (Step 4) YCbCr + DCT + quantization    |
+| Number |                           Question                           | Number |                           Question                           |
+| :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
+|   31   | [Affine Transformation(Skew)](./Question_31_40/31_Affine_Transformation(Skew).py) |   36   | [JPEG Compression (Step 1) Discrete Cosine Transform](./Question_31_40/36_JPEG_Compression_1_Discrete_Cosine_Transform.py) |
+|   32   | [Fourier Transfrom](./Question_31_40/32_Fourier_transform.py) |   37   |             [PSNR](./Question_31_40/37_PSNR.py)              |
+|   33   | [Fourier Transform Low Pass Filter](./Question_31_40/33_Fourier_Transform_and_Low_Pass_Filter.py) |   38   | [JPEG Compression (Step 2) DCT + Quantization](./Question_31_40/38_JPEG_Compression_2_DCT_Quantization.py) |
+|   34   | [Fourier Transform High Pass Filter](./Question_31_40/34_Fourier_Transform_and_High_Pass_Filter.py) |   39   | [JPEG Compression (Step 3) YCbCr Color System](./Question_31_40/39_JPEG_Compression_3_YCbCr_Color_Space.py) |
+|   35   | [Fourier Transform Band Pass Filter](./Question_31_40/35_Fourier_Transform_and_Band_Pass_Filter.py) |   40   | [JPEG Compression (Step 4) YCbCr + DCT + Quantization](./Question_31_40/40_JPEG_compression_4_YCbCr_DCT_Quantization.py) |
 
 ## [Question 41 - 50](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_41_50)
 

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-_img = cv2.imread("imori.jpg").astype(np.float32)
+_img = cv2.imread("./imori.jpg").astype(np.float32)
 H, W, C = _img.shape
 
 
@@ -39,5 +39,10 @@ out = out.astype(np.uint8)
 
 # Save result
 cv2.imshow("result", out)
+
+# Wait until a key pressed
 cv2.waitKey(0)
 cv2.imwrite("out.jpg", out)
+
+# Destroy all the windows opened before
+cv2.destroyAllWindows()
