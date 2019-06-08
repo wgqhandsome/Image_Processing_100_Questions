@@ -3,28 +3,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float32)
+img = cv2.imread("./imori.jpg").astype(np.float32)
 H, W, C = img.shape
 
 # Gray scale
 gray = 0.2126 * img[..., 2] + 0.7152 * img[..., 1] + 0.0722 * img[..., 0]
 
-"""
-fimg = np.fft.fft2(gray)
+
+f_img = np.fft.fft2(gray)
     
-# 第1象限と第3象限, 第2象限と第4象限を入れ替え
-fimg =  np.fft.fftshift(fimg)
-print(fimg.shape)
-# パワースペクトルの計算
-mag = 20*np.log(np.abs(fimg))
+# Swap the first quadrant and the third quadrant, the second quadrant and the fourth quadrant
+f_img =  np.fft.fftshift(f_img)
+print(f_img.shape)
+# Calculation of power spectrum 
+mag = 20*np.log(np.abs(f_img))
     
-# 入力画像とスペクトル画像をグラフ描画
+# Show input image and spectrum image
 plt.subplot(121)
 plt.imshow(gray, cmap = 'gray')
 plt.subplot(122)
 plt.imshow(mag, cmap = 'gray')
 plt.show()
-"""
+
 
 # DFT
 K = W
@@ -62,3 +62,7 @@ out = out.astype(np.uint8)
 cv2.imshow("result", out)
 cv2.waitKey(0)
 cv2.imwrite("out.jpg", out)
+
+# Destroy all the windows opened before
+cv2.destroyAllWindows()
+
