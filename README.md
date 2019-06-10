@@ -139,11 +139,11 @@ Hope this could help more people and thanks for [yoyoyo-yo's](https://github.com
 
 | Number |                           Question                           | Number |                           Question                           |
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
-|   41   |         Canny edge detection (Step 1) Edge intensity         |   46   | Hough conversion · Line detection (Step 3) Hough inverse transformation |
-|   42   |            Canny edge detection (Step 2) thinning            |   47   |             Morphological processing (expansion)             |
+|   41   |         Canny edge detection (Step 1) Edge intensity         |   46   | [Hough transform / line detection (Step. 3) Hough inverse transform]() |
+|   42   |            Canny edge detection (Step 2) Thinning            |   47   |             Morphological processing (expansion)             |
 |   43   | Canny edge detection (Step 3) Hysteresis threshold processing |   48   |             Morphology processing (contraction)              |
-|   44   |  Hough transform · Line detection (Step 1) Hough transform   |   49   |                       Opening process                        |
-|   45   |        Hough conversion · Line detection (Step 2) NMS        |   50   |                      Closing processing                      |
+|   44   | [Hough Transform / Line Detection (Step. 1) Hough Transform]() |   49   |                       Opening process                        |
+|   45   |   [Hough Transformation / Line Detection (Step. 2) NMS]()    |   50   |                      Closing processing                      |
 
 ## [Question 51 - 60](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_51_60)
 
