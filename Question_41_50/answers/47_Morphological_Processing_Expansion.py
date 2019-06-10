@@ -51,5 +51,10 @@ for i in range(Dil_time):
 # Save result
 cv2.imwrite("out.jpg", out)
 cv2.imshow("result", out)
+
+# Wait until a key pressed
 cv2.waitKey(0)
+
+# Destroy all the windows opened before
 cv2.destroyAllWindows()
+

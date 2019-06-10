@@ -3,15 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float32)
+img = cv2.imread("./imori.jpg").astype(np.float32)
 H, W, C = img.shape
 
 # Otsu binary
-## Grayscale
+# Grayscale
 out = 0.2126 * img[..., 2] + 0.7152 * img[..., 1] + 0.0722 * img[..., 0]
 out = out.astype(np.uint8)
 
-## Determine threshold of Otsu's binarization
+# Determine threshold of Otsu's binarization
 max_sigma = 0
 max_t = 0
 
@@ -27,7 +27,7 @@ for _t in range(1, 255):
         max_sigma = sigma
         max_t = _t
 
-## Binarization
+# Binarization
 #print("threshold >>", max_t)
 th = max_t
 out[out < th] = 0
@@ -53,5 +53,9 @@ for i in range(Erode_time):
 # Save result
 cv2.imwrite("out.jpg", out)
 cv2.imshow("result", out)
+
+# Wait until a key pressed
 cv2.waitKey(0)
+
+# Destroy all the windows opened before
 cv2.destroyAllWindows()

@@ -1,30 +1,32 @@
 # Q. 41 - 50
 
-## Q.41. Cannyエッジ検出 (Step.1) エッジ強度
+## Q.41.  Canny Edge Detection (Step. 1) Edge Magnitude
 
-Q.41 - 43 ではエッジ検出手法の一つであるCanny法の理論となる。
+Q.41-43 is the theory of Canny method, which is one of the edge detection methods.
 
-Canny法は、
-1. ガウシアンフィルタを掛ける
-2. x, y方向のSobelフィルタを掛け、それらからエッジ強度とエッジ勾配を求める
-3. エッジ勾配の値から、Non-maximum suppression によりエッジの細線化を行う
-4. ヒステリシスによる閾値処理を行う
+The Canny method is
 
-以上により、画像からエッジ部分を抜き出す手法である。
+1. Apply Gaussian filter
+2. Apply Sobel filters in the x and y directions and find edge magnitude and edge slope from them
+3. Thinning the edge by Non-maximum suppression from the value of edge gradient
+4. Perform threshold processing with hysteresis
 
-ここでは、1と2の処理を実装する。
+By the above, it is the method of extracting an edge part from an image.
 
-処理手順は、
-1. 画像をグレースケール化する
-2. ガウシアンフィルタ(5x5, s=1.4)をかける
-3. x方向、y方向のsobelフィルタを掛け、画像の勾配画像fx, fyを求め、勾配強度と勾配角度を次式で求める。
+Here, the processing of 1 and 2 is implemented.
+
+The procedure is
+
+1. Grayscale the image
+2. Apply Gaussian filter (5x5, s = 1.4)
+3. A sobel filter is applied in the x direction and the y direction to obtain the gradient image fx, fy of the image, and the gradient magnitude and the gradient angle are determined by the following equations.
 
 ```bash
-勾配強度 edge = sqrt(fx^2 + fy^2)
-勾配角度 tan = arctan(fy / fx)
+Gradient Magnitude = sqrt(fx^2 + fy^2)
+Slope angle tan = arctan(fy / fx)
 ```
 
-4. 勾配角度を次式に沿って、量子化する。
+4. The gradient angle is quantized according to the following equation.
 
 ```bash
 angle = {   0  (if -0.4142 < tan <= 0.4142)
@@ -33,207 +35,201 @@ angle = {   0  (if -0.4142 < tan <= 0.4142)
           135  (if -2.4142 < tan <= -0.4142)
 ```
 
-ただし、フィルタリングをパディングする際は、numpy.pad()を用いて、エッジの値でパディングせよ。
+However, when padding filtering, use numpy.pad () and pad with the edge value.
 
-|入力 (imori.jpg) |出力(勾配強度) (answers/answer_41_1.jpg)|出力(勾配角度) (answers/answer_41_2.jpg)|
+|Input (imori.jpg) |Output(Gradient Magnitude) (answers/answer_41_1.jpg)|Output(Gradient Angle) (answers/answer_41_2.jpg)|
 |:---:|:---:|:---:|
-|![](imori.jpg)|![](answers/answer_41_1.jpg)|![](answers/answer_41_2.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_41_1.jpg)|![](answers/answer_41_2.jpg)|
 
-答え >> [answers/answer_41.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_41.py)
+Answer >> [answers/41_Canny_Edge_Detection_1_Edge_Strength.py](.\answers\41_Canny_Edge_Detection_1_Edge_Strength.py)
 
-## Q.42. Cannyエッジ検出 (Step.2) 細線化
+## Q.42. Canny Edge Detection (Step 2) Thinning
 
-ここでは3を実装する。
+Non-maximum suppression is performed from the gradient angle determined in Q. 41, and the edge line is thinned (thin line).
 
-Q.41で求めた勾配角度から、Non-maximum suppressionを行い、エッジ線を細くする（細線化）。
+Non-maximum suppression (NMS) is a general term for the work of removing other than non-maximum values. (This name often goes well with other tasks)
 
-Non-maximum suppression(NMS)とは非最大値以外を除去する作業の総称である。（他のタスクでもこの名前はよく出る）
+Here, three gradient strengths of adjacent pixels in the direction normal to the gradient angle at the point of interest are compared, and if the maximum value is used, the value is unchanged and if it is not the maximum value, the intensity is 0.
 
-ここでは、注目している箇所の勾配角度の法線方向の隣接ピクセルの３つの勾配強度を比較して、最大値ならそのまま値をいじらずに、最大値でなければ強度を0にする、
-
-つまり、勾配強度edge(x,y)に注目している際に、勾配角度angle(x,y)によって次式のようにedge(x,y)を変更する。
+That is, while focusing on the gradient strength edge (x, y), edge (x, y) is changed by the gradient angle angle (x, y) as in the following equation.
 
 ```bash
-if angle(x,y)  = 0
- if edge(x,y), edge(x-1,y), edge(x+1,y)で edge(x,y)が最大じゃない
-  then edge(x,y) = 0
-if angle(x,y)  = 45
- if edge(x,y), edge(x-1,y+1), edge(x+1,y-1)で edge(x,y)が最大じゃない
-  then edge(x,y) = 0
-if angle(x,y)  = 90
- if edge(x,y), edge(x,y-1), edge(x,y+1)で edge(x,y)が最大じゃない
-  then edge(x,y) = 0
-if angle(x,y)  = 135
- if edge(x,y), edge(x-1,y-1), edge(x+1,y+1)で edge(x,y)が最大じゃない
-  then edge(x,y) = 0
+if angle (x, y) = 0
+  if edge (x, y) is not the maximum at if edge (x, y), edge (x-1, y), edge (x + 1, y) 
+  then edge (x, y) = 0
+if angle (x, y) = 45
+  if edge (x, y), edge (x-1, y + 1), edge (x + 1, y-1) edge (x, y) is not the largest
+  then edge (x, y) = 0
+if angle (x, y) = 90
+  if edge (x, y), edge (x, y-1), edge (x, y + 1) edge (x , y) is not the maximum
+  then edge (x, y) = 0
+if angle (x, y) = 135
+  if edge (x, y), edge (x-1, y-1), edge (x + 1, edge) edge (x, y) is not the largest
+  then edge (x, y) = 0
 ```
 
-|入力 (imori.jpg) |出力 (answers/answer_42.jpg)|
+|Input (imori.jpg) |Output (answers/answer_42.jpg)|
 |:---:|:---:|
-|![](imori.jpg)|![](answers/answer_42.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_42.jpg)|
 
-答え >> [answers/answer_42.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_42.py)
+Answer >> [answers/42_Canny_Edge_Detection_2_Thinning.py](answers\42_Canny_Edge_Detection_2_Thinning.py)
 
-## Q.43. Cannyエッジ検出 (Step.3) ヒステリシス閾処理
+## Q.43. Canny Edge Detection (Step. 3) Hysteresis Thresholding
 
-ここでは4を実装する。これがCanny法の最後である。
+We will implement 4 here. This is the end of the Canny method.
 
-ここでは、閾値により勾配強度の二値化を行うがCanny法では二つの閾値(HT: high thoresholdとLT: low threshold)を用いる。
+Here, the gradient strength is binarized by the threshold, but in the Canny method, two thresholds (HT: high threshold and LT: low threshold) are used.
 
-はじめに、
-1. 勾配強度edge(x,y)がHTより大きい場合はedge(x,y)=255
-2. LTより小さい場合はedge(x,y)=0
-3.  LT < edge(x,y) < HTの時、周り８ピクセルの勾配強度でHTより大きい値が存在すれば、edge(x,y)=255
+First of all,
 
-ここでは、HT=100, LT=30とする。ちなみに閾値の値は結果を見ながら判断するしかない。
+1. Edge (x, y) = 255 if the gradient strength edge (x, y) is larger than HT
+2. Edge (x, y) = 0 if smaller than LT
+3. When LT <edge (x, y) <HT, edge (x, y) = 255 if there is a value larger than HT with gradient intensity of 8 pixels around
 
-以上のアルゴリズムによって、Canny法が行われる。
+Here, HT = 100 and LT = 30. Incidentally, the value of the threshold can only be determined while looking at the result.
 
-|入力 (imori.jpg) |出力 (answers/answer_43.jpg)|
+The Canny method is performed by the above algorithm.
+
+|Input (imori.jpg) |Output (answers/answer_43.jpg)|
 |:---:|:---:|
-|![](imori.jpg)|![](answers/answer_43.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_43.jpg)|
 
-答え >> [answers/answer_43.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_43.py)
+Answer >> [answers/43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py](answers\43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py)
 
-## Q.44. Hough変換・直線検出 (Step.1) Hough変換
+## Q.44. Hough Transform / Line Detection (Step. 1) Hough Transform
 
-Q.44 - 46 ではHough変換を用いた直線検出を行う。
+In Q.44-46, straight line detection using Hough transform is performed.
 
-Hough変換とは、座標を直交座標から極座標に変換することにより数式に沿って直線や円など一定の形状を検出する手法である。
-ある直線状の点では極座標に変換すると一定のr, tにおいて交わる。
-その点が検出すべき直線を表すパラメータであり、このパラメータを逆変換すると直線の方程式を求めることができる。
+The Hough transform is a method of detecting a constant shape such as a straight line or a circle along an equation by converting coordinates from rectangular coordinates to polar coordinates. When converted to polar coordinates, a straight point intersects at a constant r, t. The point is a parameter representing a straight line to be detected, and the equation of the straight line can be obtained by inversely transforming this parameter.
 
-方法としては、
-1. エッジ画像からエッジのピクセルにおいてHough変換を行う。
-2. Hough変換後の値のヒストグラムをとり、極大点を選ぶ。
-3. 極大点のr, tの値をHough逆変換して検出した直線のパラメータを得る。
+As a method
 
-となる。
+1. Perform Hough transform from edge image to edge pixels.
+2. Take a histogram of the values after Hough transform, and select the maximum point.
+3. The values of r and t at the maximum point are Hough inverse transformed to obtain the parameters of the detected straight line.
 
-ここでは、1のHough変換を行いヒストグラムを作成する。
+It becomes.
 
-アルゴリズムは、
+Here, a Hough transform of 1 is performed to create a histogram.
 
-1. 画像の対角線の長さrmaxを求める
-2. エッジ箇所(x,y)において、t = 0-179で一度ずつtを変えながら、次式によりHough変換を行う
+The algorithm is
+
+1. Find the diagonal length rmax of the image
+2. Perform Hough transform according to the following equation while changing t once at t = 0-179 at the edge location (x, y)
 
 ```bash
 r = x * cos(t) + y * sin(t)
 ```
-3. 180 x rmaxのサイズの表を用意し、1で得たtable(t, r) に1を足す
+3. Prepare a table of size 180 x rmax and add 1 to table (t, r) obtained in 1.
 
-これはすなわち投票(ボーディング)であり、一定の箇所に投票が集中する。
+This is, in other words, voting (boarding), and voting concentrates on certain points.
 
-今回は*torino.jpg*を用いて、ボーディングした表を図示せよ。
-Cannyのパラメータは, gaussian filter(5x5, s=1.4), HT = 100, LT = 30で使用せよ。
+This time, use *torino.jpg* to illustrate the *boarded* table. Use Canny's parameters with gaussian filter (5x5, s = 1.4), HT = 100, LT = 30.
 
-|入力 (thorino.jpg) |出力 (answers/answer_44.jpg)|
+|Input (thorino.jpg) |Output (answers/answer_44.jpg)|
 |:---:|:---:|
-|![](thorino.jpg)|![](answers/answer_44.jpg)|
+|![](./answers/thorino.jpg)|![](answers/answer_44.jpg)|
 
-答え >> [answers/answer_44.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_44.py)
+Answer >> [answers/44_Hough_Transform_Line_Detection_1_Hough_Transform.py](.\answers\44_Hough_Transform_Line_Detection_1_Hough_Transform.py)
 
-## Q.45. Hough変換・直線検出 (Step.2) NMS
+## Q.45. Hough Transform / Line Detection (Step. 2) NMS
 
-ここでは2を実装する。
+We will implement 2 here.
 
-Q.44で得られた表では、ある一定の箇所付近に多く投票される。
-ここでは、その付近の極大値を抜き出す操作を行え。
+In the table obtained in Q.44, many votes are cast near a certain place. Here, the operation to extract the local maximum value is performed.
 
-今回はボーディングが多い箇所を上位10個抜き出し、図示せよ。
+This time, draw out the top 10 places with a lot of boarding, and draw them.
 
-NMSのアルゴリズムは、
-1. 表において、周囲8マス(8近傍)より注目ピクセルの得票数が多ければそのまま。
-2. 注目ピクセルの値が少なければ0にする。
+NMS algorithm is
 
-|入力 (thorino.jpg) |出力 (answers/answer_45.jpg)|
+1. In the table, if the number of votes for the pixel of interest is greater than the eight surrounding squares (near eight), it remains unchanged.
+2. Set to 0 if the value of the pixel of interest is small.
+
+|Input (thorino.jpg) |Output (answers/answer_45.jpg)|
 |:---:|:---:|
-|![](thorino.jpg)|![](answers/answer_45.jpg)|
+|![](./answers/thorino.jpg)|![](answers/answer_45.jpg)|
 
-答え >> [answers/answer_45.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_45.py)
+Answer >> [answers/45_Hough_Transform_Line_Detection_2_NMS.py](.\answers\45_Hough_Transform_Line_Detection_2_NMS.py)
 
-## Q.46. Hough変換・直線検出 (Step.3) Hough逆変換
+## Q.46.  Hough Transform / Line Detection (Step. 3) Hough Inverse Transform
 
-ここではQ.45.で得られた極大値をHough逆変換をして直線を描画する。これで、Hough変換による直線検出が完了する。
+Here, the maximum value obtained in Q. 45 is Hough inverse transformed to draw a straight line. This completes the straight line detection by the Hough transform.
 
-アルゴリズムは、
-1. 極大点(r, t)を次式で逆変換する。
+The algorithm is
+
+1. The local maximum point (r, t) is inversely transformed by the following equation.
 
 ```bash
 y = - cos(t) / sin(t) * x + r / sin(t)
 x = - sin(t) / cos(t) * y + r / cos(t)
 ```
 
-2. 1の逆変換を極大点ごとにy = 0 - H-1, x = 0 - W-1 で行い、入力画像に検出した直線を描画せよ。
-ただし、描画するのは赤線(R,G,B) = (255, 0, 0)とする。
+2. Perform inverse transformation of 1 at y = 0-H -1, x = 0-W-1 for each local maximum point, and draw a detected straight line in the input image. However, red line (R, G, B) = (255, 0, 0) is to be drawn.
 
-|入力 (thorino.jpg) |出力 (answers/answer_46.jpg)|
+|Input (thorino.jpg) |Output (answers/answer_46.jpg)|
 |:---:|:---:|
-|![](thorino.jpg)|![](answers/answer_46.jpg)|
+|![](./answers/thorino.jpg)|![](answers/answer_46.jpg)|
 
-答え >> [answers/answer_46.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_46.py)
+Answer >> [answers/46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py](answers\46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py)
 
-## Q.47. モルフォロジー処理(膨張)
+## Q.47. Morphological Processing (Dilatation)
 
-*imori.jpg*を大津の二値化したものに、モルフォロジー処理による膨張を2回行え。
+*Imori.jpg* is Otsu's binarized, and expansion can be performed twice by morphological processing.
 
-モルフォロジー処理とは二値化画像の白(255)マス部分を4近傍(上下左右1マス)に膨張、または1マスだけ収縮させる処理をいう。
+The morphological process is a process of expanding a white (255) mass portion of a binarized image to four neighborhoods (one upper and lower left and right squares) or shrinking it by one mass.
 
-この膨張と収縮を何度も繰り返すことで1マスだけに存在する白マスを消したり(Q.49. オープニング処理)、本来つながってほしい白マスを結合させたりできる(Q.50. クロージング処理)。
+By repeating this expansion and contraction many times, it is possible to erase the white squares present in only one square (Q. 49. Opening process), or combine the white squares that you want to be connected originally (Q. 50. closing process) .
 
-モルフォロジー処理の膨張(Dilation)アルゴリズムは、
-注目画素I(x, y)=0で、I(x, y-1), I(x-1, y), I(x+1, y), I(x, y+1)のどれか一つが255なら、I(x, y) = 255 とする。
+The dilation algorithm for morphological processing is as follows: I (x, y-1), I (x-1, y), I (x + 1, y), I at the target pixel I (x, y) = 0 If any one of (x, y + 1) is 255, then I (x, y) = 255.
 
+That is, if the above process is performed twice, it can be expanded by two squares.
 
-つまり、上の処理を2回行えば2マス分膨張できることになる。
+For example, if the sum of [[0,1,0], [1,0,1], [0,1,0]] after filtering is 255 or more, it is considered as dilation.
 
-例えば、[[0,1,0], [1,0,1], [0,1,0]] のフィルタを掛けた和が255以上なら膨張である、と考える。
-
-|入力 (imori.jpg) |大津の二値化(answers/answer_4.jpg)|出力 (answers/answer_47.jpg)|
+|Input (imori.jpg) |Otsu’s Binarization (answers/answer_4.jpg)|Output (answers/answer_47.jpg)|
 |:---:|:---:|:---:|
-|![](imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_47.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_47.jpg)|
 
-答え >> [answers/answer_47.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_47.py)
+Answer >> [answers/47_Morphological_Processing_Expansion.py](answers\47_Morphological_Processing_Expansion.py)
 
-## Q.48. モルフォロジー処理(収縮)
+## Q.48. Morphology Processing (Erosion)
 
-*imori.jpg*を大津の二値化したものに、モルフォロジー処理による収縮を2回行え。
+*Imori.jpg* is Otsu's *binarized* and can be shrunk twice by morphological processing.
 
-モルフォロジー処理の収縮(Erosion)アルゴリズムは、
-注目画素I(x, y)=255で、I(x, y-1), I(x-1, y), I(x+1, y), I(x, y+1)のどれか一つでも0なら、I(x, y) = 0 とする。
+The shrinkage algorithm (Erosion) algorithm for morphological processing is as follows: I (x, y-1), I (x-1, y), I (x + 1, y), I If any one of (x, y + 1) is 0, then I (x, y) = 0.
 
-例えば、[[0,1,0], [1,0,1], [0,1,0]] のフィルタを掛けた和が255*4未満なら収縮である、と考える。
+For example, consider a contraction if the filtered sum of [[0,1,0], [1,0,1], [0,1,0]] is less than 255 * 4.
 
-|入力 (imori.jpg) |大津の二値化(answers/answer_4.jpg)|出力 (answers/answer_48.jpg)|
+|Input (imori.jpg) |大津の二値化(answers/answer_4.jpg)|Output (answers/answer_48.jpg)|
 |:---:|:---:|:---:|
-|![](imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_48.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_48.jpg)|
 
-答え >> [answers/answer_48.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_48.py)
+Answer >> [answers/48_Morphology_Processing_Erosion.py](answers\48_Morphology_Processing_Erosion.py)
 
-## Q.49. オープニング処理
+## Q.49. Opening Process
 
-**大津の二値化後**に、オープニング処理(N=1)を行え。
+**After Otsu's binarization** , an opening process (N = 1) can be performed.
 
-オープニング処理とは、モルフォロジー処理の収縮をN回行った後に膨張をN回行う処理である。
+The opening process is a process in which expansion is performed N times after the shrinkage of the morphology process is performed N times.
 
-オープニング処理により、一つだけ余分に存在する画素などを削除できる。
+By the opening process, it is possible to delete one extra pixel and the like.
 
-|入力 (imori.jpg) |大津の二値化(answers/answer_4.jpg)|出力 (answers/answer_49.jpg)|
+|Input (imori.jpg) |大津の二値化(answers/answer_4.jpg)|Output (answers/answer_49.jpg)|
 |:---:|:---:|:---:|
-|![](imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_49.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_49.jpg)|
 
-答え >> [answers/answer_49.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_49.py)
+Answer >> [answers/49_Opening_Process.py](answers\49_Opening_Process.py)
 
-## Q.50. クロージング処理
+## Q.50. Closing Process
 
-**Canny検出した後**に、クロージング処理(N=1)を行え。
+**After Canny detection** , closing processing (N = 1) can be performed.
 
-クロージング処理とは、モルフォロジー処理の膨張をN回行った後に収縮をN回行う処理である。
+The closing process is a process in which contraction is performed N times after expansion of the morphology process is performed N times.
 
-クロージング処理により、途中で途切れた画素を結合することができる。
+By the closing process, it is possible to combine interrupted pixels.
 
-|入力 (imori.jpg) |Canny(answers/answer_43.jpg)|出力 (answers/answer_50.jpg)|
+|Input (imori.jpg) |Canny(answers/answer_43.jpg)|Output (answers/answer_50.jpg)|
 |:---:|:---:|:---:|
-|![](imori.jpg)|![](answers/answer_43.jpg)|![](answers/answer_50.jpg)|
+|![](./answers/imori.jpg)|![](answers/answer_43.jpg)|![](answers/answer_50.jpg)|
 
-答え >> [answers/answer_50.py](https://github.com/yoyoyo-yo/Gasyori100knock/blob/master/Question_41_50/answers/answer_50.py)
+Answer >> [answers/50_Closing_Process.py](answers\50_Closing_Process.py)

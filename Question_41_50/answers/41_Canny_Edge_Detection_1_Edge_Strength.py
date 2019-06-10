@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float32)
+img = cv2.imread("./imori.jpg").astype(np.float32)
 H, W, C = img.shape
 
 # Gray
@@ -62,35 +62,15 @@ angle[np.where((tan > 0.4142) & (tan < 2.4142))] = 45
 angle[np.where((tan >= 2.4142) | (tan <= -2.4142))] = 95
 angle[np.where((tan > -2.4142) & (tan <= -0.4142))] = 135
 
-for y in range(H):
-    for x in range(W):
-        if angle[y, x] == 0:
-            dx1, dy1, dx2, dy2 = -1, 0, 1, 0
-        elif angle[y, x] == 45:
-            dx1, dy1, dx2, dy2 = -1, 1, 1, -1
-        elif angle[y, x] == 90:
-            dx1, dy1, dx2, dy2 = 0, -1, 0, 1
-        elif angle[y, x] == 135:
-            dx1, dy1, dx2, dy2 = -1, -1, 1, 1
-        if x == 0:
-            dx1 = max(dx1, 0)
-            dx2 = max(dx2, 0)
-        if x == W-1:
-            dx1 = min(dx1, 0)
-            dx2 = min(dx2, 0)
-        if y == 0:
-            dy1 = max(dy1, 0)
-            dy2 = max(dy2, 0)
-        if y == H-1:
-            dy1 = min(dy1, 0)
-            dy2 = min(dy2, 0)
-        if max(max(edge[y, x], edge[y+dy1, x+dx1]), edge[y+dy2, x+dx2]) != edge[y, x]:
-            edge[y, x] = 0
-            
-out = edge.astype(np.uint8)
+out = angle.astype(np.uint8)
 
 # Save result
 cv2.imwrite("out.jpg", out)
 cv2.imshow("result", out)
+
+# Wait until a key pressed
 cv2.waitKey(0)
+
+# Destroy all the windows opened before
 cv2.destroyAllWindows()
+

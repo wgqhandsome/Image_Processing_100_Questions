@@ -13,18 +13,18 @@ gray = 0.2126 * img[..., 2] + 0.7152 * img[..., 1] + 0.0722 * img[..., 0]
 K_size = 5
 sigma = 1.4
 
-## Zero padding
+# Zero padding
 pad = K_size // 2
 gau = np.zeros((H + pad*2, W + pad*2), dtype=np.float32)
 #gau[pad:pad+H, pad:pad+W] = gray.copy().astype(np.float32)
 gau = np.pad(gray, (pad, pad), 'edge')
 tmp = gau.copy()
 
-## Kernel
+# Kernel
 K = np.zeros((K_size, K_size), dtype=np.float32)
 for x in range(-pad, -pad+K_size):
     for y in range(-pad, -pad+K_size):
-        K[y+pad, x+pad] = np.exp( -(x**2 + y**2) / (2* (sigma**2)))
+        K[y+pad, x+pad] = np.exp(-(x**2 + y**2) / (2 * (sigma**2)))
 K /= (sigma * np.sqrt(2 * np.pi))
 K /= K.sum()
 
@@ -32,9 +32,9 @@ for y in range(H):
     for x in range(W):
         gau[pad+y, pad+x] = np.sum(K * tmp[y:y+K_size, x:x+K_size])
 
-## Sobel vertical
+# Sobel vertical
 KSV = np.array(((-1., -2., -1.), (0., 0., 0.), (1., 2., 1.)), dtype=np.float32)
-## Sobel horizontal
+# Sobel horizontal
 KSH = np.array(((-1., 0., 1.), (-2., 0., 2.), (-1., 0., 1.)), dtype=np.float32)
 
 gau = gau[pad-1:H+pad+1, pad-1:W+pad+1]
@@ -47,7 +47,7 @@ for y in range(H):
     for x in range(W):
         fy[pad+y, pad+x] = np.sum(KSV * gau[y:y+K_size, x:x+K_size])
         fx[pad+y, pad+x] = np.sum(KSH * gau[y:y+K_size, x:x+K_size])
-        
+
 fx = fx[pad:pad+H, pad:pad+W]
 fy = fy[pad:pad+H, pad:pad+W]
 
@@ -55,7 +55,7 @@ fy = fy[pad:pad+H, pad:pad+W]
 edge = np.sqrt(np.power(fx, 2) + np.power(fy, 2))
 fx[fx == 0] = 1e-5
 tan = np.arctan(fy / fx)
-## Angle quantization
+# Angle quantization
 angle = np.zeros_like(tan, dtype=np.uint8)
 angle[np.where((tan > -0.4142) & (tan <= 0.4142))] = 0
 angle[np.where((tan > 0.4142) & (tan < 2.4142))] = 45
@@ -97,7 +97,7 @@ edge[edge <= LT] = 0
 _edge = np.zeros((H+2, W+2), dtype=np.float32)
 _edge[1:H+1, 1:W+1] = edge
 
-## 8 - Nearest neighbor
+# 8 - Nearest neighbor
 nn = np.array(((1., 1., 1.), (1., 0., 1.), (1., 1., 1.)), dtype=np.float32)
 
 for y in range(1, H+2):
@@ -110,12 +110,12 @@ for y in range(1, H+2):
             _edge[y, x] = 0
 
 edge = _edge[1:H+1, 1:W+1].astype(np.uint8)
-            
-## Canny finish
+
+# Canny finish
 
 # Hough
 
-## Voting
+# Voting
 drho = 1
 dtheta = 1
 rho_max = np.ceil(np.sqrt(H**2 + W**2)).astype(np.int)
@@ -123,17 +123,63 @@ hough = np.zeros((rho_max, 180), dtype=np.int)
 
 ind = np.where(edge == 255)
 
-## hough transformation
+# hough transformation
 for y, x in zip(ind[0], ind[1]):
     for theta in range(0, 180, dtheta):
         t = np.pi / 180 * theta
         rho = int(x * np.cos(t) + y * np.sin(t))
         hough[rho, theta] += 1
-          
-out = hough.astype(np.uint8)
-            
+
+plt.imshow(hough, cmap='gray')
+
+# non maximum suppression
+for y in range(rho_max):
+    for x in range(180):
+        x1 = max(x-1, 0)
+        x2 = min(x+2, 180)
+        y1 = max(y-1, 0)
+        y2 = min(y+2, rho_max)
+        if np.max(hough[y1:y2, x1:x2]) == hough[y, x] and hough[y, x] != 0:
+            pass
+            #hough[y,x] = 255
+        else:
+            hough[y, x] = 0
+ind_x = np.argsort(hough.ravel())[::-1][:10]
+ind_y = ind_x.copy()
+thetas = ind_x % 180
+rhos = ind_y // 180
+#_hough = np.zeros_like(hough, dtype=np.int)
+#_hough[rhos, thetas] = 255
+
+# Inverse hough transformation
+
+out = img.copy()
+
+for theta, rho in zip(thetas, rhos):
+    t = np.pi / 180. * theta
+    for x in range(W):
+        if np.sin(t) != 0:
+            y = - (np.cos(t) / np.sin(t)) * x + rho / np.sin(t)
+            y = int(y)
+            if y >= H or y < 0:
+                continue
+            out[y, x] = [0, 0, 255]
+    for y in range(H):
+        if np.cos(t) != 0:
+            x = - (np.sin(t) / np.cos(t)) * y + rho / np.cos(t)
+            x = int(x)
+            if x >= W or x < 0:
+                continue
+            out[y, x] = [0, 0, 255]
+
+out = out.astype(np.uint8)
+
 # Save result
 cv2.imwrite("out.jpg", out)
 cv2.imshow("result", out)
+
+# Wait until a key pressed
 cv2.waitKey(0)
+
+# Destroy all the windows opened before
 cv2.destroyAllWindows()

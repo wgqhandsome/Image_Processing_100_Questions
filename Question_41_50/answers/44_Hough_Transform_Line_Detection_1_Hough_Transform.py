@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Read image
-img = cv2.imread("imori.jpg").astype(np.float32)
+img = cv2.imread("./thorino.jpg").astype(np.float32)
 H, W, C = img.shape
 
 # Gray
@@ -55,6 +55,7 @@ fy = fy[pad:pad+H, pad:pad+W]
 edge = np.sqrt(np.power(fx, 2) + np.power(fy, 2))
 fx[fx == 0] = 1e-5
 tan = np.arctan(fy / fx)
+
 ## Angle quantization
 angle = np.zeros_like(tan, dtype=np.uint8)
 angle[np.where((tan > -0.4142) & (tan <= 0.4142))] = 0
@@ -109,38 +110,36 @@ for y in range(1, H+2):
         else:
             _edge[y, x] = 0
 
-edge = _edge[1:H+1, 1:W+1]
+edge = _edge[1:H+1, 1:W+1].astype(np.uint8)
             
-out = edge.astype(np.uint8)
+## Canny finish
 
+# Hough
 
-# Morphology filter
-MF = np.array(((0, 1, 0),
-               (1, 0, 1),
-               (0, 1, 0)), dtype=np.int)
+## Voting
+drho = 1
+dtheta = 1
+rho_max = np.ceil(np.sqrt(H**2 + W**2)).astype(np.int)
+hough = np.zeros((rho_max, 180), dtype=np.int)
 
-# Morphology - dilate
-Dil_time = 1
+ind = np.where(edge == 255)
 
-for i in range(Dil_time):
-    tmp = np.pad(out, (1, 1), 'edge')
-    for y in range(1, H+1):
-        for x in range(1, W+1):
-            if np.sum(MF * tmp[y-1:y+2, x-1:x+2]) >= 255:
-                out[y-1, x-1] = 255
-
-# Morphology - erode
-Erode_time = 1
-
-for i in range(Erode_time):
-    tmp = np.pad(out, (1, 1), 'edge')
-    for y in range(1, H+1):
-        for x in range(1, W+1):
-            if np.sum(MF * tmp[y-1:y+2, x-1:x+2]) < 255*4:
-                out[y-1, x-1] = 0
-
+## hough transformation
+for y, x in zip(ind[0], ind[1]):
+    for theta in range(0, 180, dtheta):
+        t = np.pi / 180 * theta
+        rho = int(x * np.cos(t) + y * np.sin(t))
+        hough[rho, theta] += 1
+          
+out = hough.astype(np.uint8)
+            
 # Save result
 cv2.imwrite("out.jpg", out)
 cv2.imshow("result", out)
+
+# Wait until a key pressed
 cv2.waitKey(0)
+
+# Destroy all the windows opened before
 cv2.destroyAllWindows()
+
