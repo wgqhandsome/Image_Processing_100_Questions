@@ -41,7 +41,7 @@ However, when padding filtering, use numpy.pad () and pad with the edge value.
 |:---:|:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_41_1.jpg)|![](answers/answer_41_2.jpg)|
 
-Answer >> [answers/41_Canny_Edge_Detection_1_Edge_Strength.py](.\answers\41_Canny_Edge_Detection_1_Edge_Strength.py)
+Answer >> [answers/41_Canny_Edge_Detection_1_Edge_Strength.py](./answers/41_Canny_Edge_Detection_1_Edge_Strength.py)
 
 ## Q.42. Canny Edge Detection (Step 2) Thinning
 
@@ -72,7 +72,7 @@ if angle (x, y) = 135
 |:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_42.jpg)|
 
-Answer >> [answers/42_Canny_Edge_Detection_2_Thinning.py](answers\42_Canny_Edge_Detection_2_Thinning.py)
+Answer >> [answers/42_Canny_Edge_Detection_2_Thinning.py](answers/42_Canny_Edge_Detection_2_Thinning.py)
 
 ## Q.43. Canny Edge Detection (Step. 3) Hysteresis Thresholding
 
@@ -94,7 +94,7 @@ The Canny method is performed by the above algorithm.
 |:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_43.jpg)|
 
-Answer >> [answers/43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py](answers\43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py)
+Answer >> [answers/43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py](answers/43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py)
 
 ## Q.44. Hough Transform / Line Detection (Step. 1) Hough Transform
 
@@ -130,7 +130,7 @@ This time, use *torino.jpg* to illustrate the *boarded* table. Use Canny's param
 |:---:|:---:|
 |![](./answers/thorino.jpg)|![](answers/answer_44.jpg)|
 
-Answer >> [answers/44_Hough_Transform_Line_Detection_1_Hough_Transform.py](.\answers\44_Hough_Transform_Line_Detection_1_Hough_Transform.py)
+Answer >> [answers/44_Hough_Transform_Line_Detection_1_Hough_Transform.py](./answers/44_Hough_Transform_Line_Detection_1_Hough_Transform.py)
 
 ## Q.45. Hough Transform / Line Detection (Step. 2) NMS
 
@@ -149,7 +149,7 @@ NMS algorithm is
 |:---:|:---:|
 |![](./answers/thorino.jpg)|![](answers/answer_45.jpg)|
 
-Answer >> [answers/45_Hough_Transform_Line_Detection_2_NMS.py](.\answers\45_Hough_Transform_Line_Detection_2_NMS.py)
+Answer >> [answers/45_Hough_Transform_Line_Detection_2_NMS.py](./answers/45_Hough_Transform_Line_Detection_2_NMS.py)
 
 ## Q.46.  Hough Transform / Line Detection (Step. 3) Hough Inverse Transform
 
@@ -170,7 +170,7 @@ x = - sin(t) / cos(t) * y + r / cos(t)
 |:---:|:---:|
 |![](./answers/thorino.jpg)|![](answers/answer_46.jpg)|
 
-Answer >> [answers/46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py](answers\46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py)
+Answer >> [answers/46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py](answers/46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py)
 
 ## Q.47. Morphological Processing (Dilatation)
 
@@ -190,7 +190,7 @@ For example, if the sum of [[0,1,0], [1,0,1], [0,1,0]] after filtering is 255 or
 |:---:|:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_47.jpg)|
 
-Answer >> [answers/47_Morphological_Processing_Expansion.py](answers\47_Morphological_Processing_Expansion.py)
+Answer >> [answers/47_Morphological_Processing_Expansion.py](answers/47_Morphological_Processing_Expansion.py)
 
 ## Q.48. Morphology Processing (Erosion)
 
@@ -204,7 +204,7 @@ For example, consider a contraction if the filtered sum of [[0,1,0], [1,0,1], [0
 |:---:|:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_48.jpg)|
 
-Answer >> [answers/48_Morphology_Processing_Erosion.py](answers\48_Morphology_Processing_Erosion.py)
+Answer >> [answers/48_Morphology_Processing_Erosion.py](answers/48_Morphology_Processing_Erosion.py)
 
 ## Q.49. Opening Process
 
@@ -218,7 +218,7 @@ By the opening process, it is possible to delete one extra pixel and the like.
 |:---:|:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_4.jpg)|![](answers/answer_49.jpg)|
 
-Answer >> [answers/49_Opening_Process.py](answers\49_Opening_Process.py)
+Answer >> [answers/49_Opening_Process.py](answers/49_Opening_Process.py)
 
 ## Q.50. Closing Process
 
@@ -232,4 +232,4 @@ By the closing process, it is possible to combine interrupted pixels.
 |:---:|:---:|:---:|
 |![](./answers/imori.jpg)|![](answers/answer_43.jpg)|![](answers/answer_50.jpg)|
 
-Answer >> [answers/50_Closing_Process.py](answers\50_Closing_Process.py)
+Answer >> [answers/50_Closing_Process.py](answers/50_Closing_Process.py)
