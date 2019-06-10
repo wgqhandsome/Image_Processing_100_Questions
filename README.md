@@ -80,7 +80,7 @@ I'm currently working on ROS and OpenCV, so I'm updating another repository: [Op
 - [x] Question 11 - 20 >> Question_ 11 _ 20
 - [x] Question 21 - 30 >> Question_ 21 _ 30
 - [x] Question 31 - 40 >> Question_ 31 _ 40
-- [ ] Question 41 - 50 >> Question_ 41 _ 50
+- [x] Question 41 - 50 >> Question_ 41 _ 50
 - [ ] Question 51 - 60 >> Question_ 51 _ 60
 - [ ] Question 61 - 70 >> Question_ 61 _ 70
 - [ ] Question 71 - 80 >> Quesiton_ 71 _ 80
@@ -141,11 +141,11 @@ I'm currently working on ROS and OpenCV, so I'm updating another repository: [Op
 
 | Number |                           Question                           | Number |                           Question                           |
 | :----: | :----------------------------------------------------------: | :----: | :----------------------------------------------------------: |
-|   41   |         Canny edge detection (Step 1) Edge intensity         |   46   | Hough conversion · Line detection (Step 3) Hough inverse transformation |
-|   42   |            Canny edge detection (Step 2) thinning            |   47   |             Morphological processing (expansion)             |
-|   43   | Canny edge detection (Step 3) Hysteresis threshold processing |   48   |             Morphology processing (contraction)              |
-|   44   |  Hough transform · Line detection (Step 1) Hough transform   |   49   |                       Opening process                        |
-|   45   |        Hough conversion · Line detection (Step 2) NMS        |   50   |                      Closing processing                      |
+|   41   | [Canny Edge Detection (Step 1) Edge Magnitude](Question_41_50\answers\41_Canny_Edge_Detection_1_Edge_Strength.py) |   46   | [Hough Transform / Line Detection (Step. 3) Hough Inverse Transform](Question_41_50\answers\46_Hough_Transform_Line_Detection_3_Hough_Inverse_Transform.py) |
+|   42   | [Canny Edge Detection (Step 2) Thinning](./Question_41_50\answers\42_Canny_Edge_Detection_2_Thinning.py) |   47   | [Morphological Processing (Expansion)](Question_41_50\answers\47_Morphological_Processing_Expansion.py) |
+|   43   | [Canny Edge Detection (Step 3) Hysteresis Threshold Processing](./Question_41_50\answers\43_Canny_Edge_Detection_3_Hysteresis_Thresholding.py) |   48   | [Morphology Processing (Erosion)](Question_41_50\answers\48_Morphology_Processing_Erosion.py) |
+|   44   | [Hough Transform / Line Detection (Step. 1) Hough Transform](Question_41_50\answers\44_Hough_Transform_Line_Detection_1_Hough_Transform.py) |   49   | [Opening Processing](Question_41_50\answers\49_Opening_Process.py) |
+|   45   | [Hough Transformation / Line Detection (Step. 2) NMS](Question_41_50\answers\45_Hough_Transform_Line_Detection_2_NMS.py) |   50   | [Closing Processing](Question_41_50\answers\50_Closing_Process.py) |
 
 ## [Question 51 - 60](https://github.com/KuKuXia/Image_Processing_100_Questions/tree/master/Question_51_60)
 
